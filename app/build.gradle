@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('../Untitled')
+            storePassword 'myjopen421'
+            keyAlias 'keyrtcvoice'
+            keyPassword 'myjopen421'
+        }
+    }
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.highras.rtc"
+        minSdkVersion 24
+        targetSdkVersion 30
+        versionCode 3
+        versionName "3.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_TOOLCHAIN=clang',"-DANDROID_STL=c++_shared"
+                abiFilters 'armeabi-v7a','arm64-v8a', 'x86_64'
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    buildToolsVersion '30.0.3'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            def fileName
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                if (variant.buildType.name.equals('release')) {//如果是release包
+                    fileName = "rtgdemo.apk"
+                } else if (variant.buildType.name.equals('debug')) {//如果是debug包
+                    fileName = "debug_rtgdemo.apk"
+                }
+                outputFileName = fileName
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment:2.3.1'
+    implementation 'androidx.navigation:navigation-ui:2.3.1'
+    implementation 'com.github.arcadefire:nice-spinner:1.4'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'me.jessyan:autosize:1.1.2'
+    implementation project(':spinner_lib')
+
+    implementation 'com.tuzhenlei:crashhandler:1.0.1'
+    implementation project(path: ':LiveDataRTE-sdk')
+}

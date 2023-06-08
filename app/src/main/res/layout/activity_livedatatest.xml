@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LiveDataTest">
+
+    <org.angmarch.views.NiceSpinner
+        android:id="@+id/selecttype"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/layoutback"
+        android:gravity="left"
+        android:textSize="14dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"></org.angmarch.views.NiceSpinner>
+
+    <Button
+        android:id="@+id/rtmtest"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="296dp"
+        android:text="RTM测试"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/imtest"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="64dp"
+        android:text="IM测试"
+        app:layout_constraintEnd_toEndOf="@+id/rtmtest"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rtmtest"
+        app:layout_constraintTop_toBottomOf="@+id/rtmtest" />
+
+    <Button
+        android:id="@+id/rtctest"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="48dp"
+        android:text="RTC测试"
+        app:layout_constraintEnd_toEndOf="@+id/imtest"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imtest"
+        app:layout_constraintTop_toBottomOf="@+id/imtest" />
+</androidx.constraintlayout.widget.ConstraintLayout>

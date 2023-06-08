@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name = "livedatalibsall"
+include ':LiveDataRTE-sdk'
+include ':spinner_lib'

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".livedata_rtmtest">
+
+    <Button
+        android:id="@+id/setgroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置群组"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/loginid"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        app:layout_constraintStart_toEndOf="@+id/loginid"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/touid"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginid" />
+
+    <Button
+        android:id="@+id/settouid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置对方id"
+        app:layout_constraintStart_toEndOf="@+id/touid"
+        app:layout_constraintTop_toBottomOf="@+id/loginid" />
+
+    <TextView
+        android:id="@+id/logview"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/voice_member_bg"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ExpandableListView
+        android:id="@+id/faqList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:childDivider="#FFCECFCE"
+        android:divider="#FFCECFCE"
+        android:dividerHeight="1px"
+        android:fillViewport="true"
+        android:footerDividersEnabled="true"
+        android:groupIndicator="@null"
+        android:layoutDirection="rtl"
+        android:stackFromBottom="false"
+        android:transcriptMode="normal"
+        app:layout_constraintBottom_toTopOf="@+id/logview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settouid"></ExpandableListView>
+
+    <TextView
+        android:id="@+id/clearlog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="0dp"
+        android:paddingLeft="0dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="0dp"
+        android:text="清除日志"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logview"></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
