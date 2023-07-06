@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import java.util.LinkedList;
 import java.util.Random;
 
+import com.LiveDataRTE.DecodeMusicFile;
 import com.LiveDataRTE.LiveDataStruct.*;
 import com.LiveDataRTE.LDInterface.*;
 
@@ -195,6 +196,27 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onSuccess() {
                     Intent intent = new Intent(LoginActivity.this, testp2p.class);
+                    saveUserData(utils.currentUserid, utils.nickName);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onError(LDAnswer answer) {
+                    Utils.alertDialog(LoginActivity.this,"登录失败 " + answer.getErrInfo());
+
+                }
+            });
+        });
+
+        $(R.id.voiceroom).setOnClickListener(view -> {
+//            DecodeMusicFile.decodeMusicFile("/sdcard/Download/lixiang.mp3");
+            if (!checkNess()){
+                return;
+            }
+            utils.login(this, new IEmptyCallback() {
+                @Override
+                public void onSuccess() {
+                    Intent intent = new Intent(LoginActivity.this, VoiceroomtestActivity.class);
                     saveUserData(utils.currentUserid, utils.nickName);
                     startActivity(intent);
                 }

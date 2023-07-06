@@ -83,8 +83,6 @@ public class TestVoiceActivity extends AppCompatActivity {
     TextView udpRTTshow;
     TextView tcpRTTshow;
     Button clear;
-    Button startaudio;
-    Button closeaudio;
     String nickName;
 
     Chronometer chronometer;
@@ -218,8 +216,6 @@ public class TestVoiceActivity extends AppCompatActivity {
         logView.setTextColor(this.getResources().getColor(R.color.white));
         logView.setMovementMethod(ScrollingMovementMethod.getInstance());
         clear = $(R.id.clearlog);
-        startaudio = $(R.id.startaudio);
-        closeaudio = $(R.id.closeaudio);
         if (utils.ldEngine == null)
             return;
         ldEngine = utils.ldEngine;
@@ -232,23 +228,8 @@ public class TestVoiceActivity extends AppCompatActivity {
             }
         });
 
-        startaudio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    mediaPlayer.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                mediaPlayer.start();
-            }
-        });
-        closeaudio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer.stop();
-            }
-        });
+
+
         chronometer = $(R.id.caltimer);
         activityRoom = utils.currentRoomid;
         userid = utils.currentUserid;

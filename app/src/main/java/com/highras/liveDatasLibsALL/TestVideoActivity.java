@@ -571,26 +571,32 @@ public class TestVideoActivity extends BaseActivity implements View.OnClickListe
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated( SurfaceHolder holder) {
-                ldEngine.RTC.subscribeVideos(activityRoom, new HashMap<Long, SurfaceView>() {{
-                    put(inituid, surfaceView);
-                }}, new IEmptyCallback() {
-                    @Override
-                    public void onSuccess() {
-                        addlog( "surfaceCreated: 订阅 "  + showName(inituid,initname )+" 视频流成功");
-                        userSurfaces.put(inituid, view);
-                    }
+                if (userSurfaces.get(inituid) != null){
+                    ldEngine.RTC.bindDecodeSurface(inituid, surfaceView);
 
-                    @Override
-                    public void onError(LDAnswer answer) {
-                        addlog( "surfaceCreated: 订阅 "  + showName(inituid,initname )+" 视频流失败:"+answer.getErrInfo());
-                        linearlayout.removeView(view);
-                    }
-                });
+                }else {
+                    ldEngine.RTC.subscribeVideos(activityRoom, new HashMap<Long, SurfaceView>() {{
+                        put(inituid, surfaceView);
+                    }}, new IEmptyCallback() {
+                        @Override
+                        public void onSuccess() {
+                            addlog("surfaceCreated: 订阅 " + showName(inituid, initname) + " 视频流成功");
+                            userSurfaces.put(inituid, view);
+                        }
+
+                        @Override
+                        public void onError(LDAnswer answer) {
+                            addlog("surfaceCreated: 订阅 " + showName(inituid, initname) + " 视频流失败:" + answer.getErrInfo());
+                            linearlayout.removeView(view);
+
+                        }
+                    });
+                }
             }
 
             @Override
             public void surfaceChanged( SurfaceHolder holder, int format, int width, int height) {
-//                addlog("surfaceChanged ");
+                addlog("surfaceChanged ");
             }
 
             @Override

@@ -43,6 +43,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             def outputFile = output.outputFile
@@ -59,8 +60,20 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
-    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    if (needRTC.toBoolean()) {
+        implementation(name: 'LiveDataRTERTC', ext: 'aar')
+    }else{
+        implementation(name: 'LiveDataRTE', ext: 'aar')
+    }
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -74,5 +87,4 @@ dependencies {
     implementation project(':spinner_lib')
 
     implementation 'com.tuzhenlei:crashhandler:1.0.1'
-    implementation project(path: ':LiveDataRTE-sdk')
 }

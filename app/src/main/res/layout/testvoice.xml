@@ -31,23 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/room_member_recycle" />
 
-    <Button
-        android:visibility="gone"
-        android:id="@+id/startaudio"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="开启音乐"
-        app:layout_constraintBottom_toTopOf="@+id/closeaudio"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:visibility="gone"
-        android:id="@+id/closeaudio"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="关闭音乐"
-        app:layout_constraintBottom_toBottomOf="@+id/logview"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

@@ -21,6 +21,11 @@
         android:theme="@style/Theme.CaptureDemo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".VoiceroomtestActivity"
+            android:screenOrientation="portrait"
+        android:exported="true"
+            android:theme="@style/Theme.CaptureDemo.NoActionBar" />
+        <activity
             android:name=".livedata_rtmtest"
             android:exported="true" />
         <activity

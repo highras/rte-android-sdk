@@ -76,6 +76,8 @@ public class livedata_rtmtest extends AppCompatActivity implements View.OnClickL
             addLog(method + " 失败 " + answer.getErrInfo());
     }
 
+
+
     void addLog(final String msg) {
         runOnUiThread(new Runnable() {
             @Override
@@ -85,6 +87,846 @@ public class livedata_rtmtest extends AppCompatActivity implements View.OnClickL
                 logView.append(realmsg);
             }
         });
+    }
+
+    void p2ptest(int childPosition){
+        if (ldEngine == null){
+            Utils.alertDialog(this,"请先登录");
+            return;
+        }
+        switch (childPosition){
+            case 0:
+                ldEngine.RTM.sendChatMessage(toUid,  ConversationType.P2P, sendMsg, userattrs, new ISendMsgCallback() {
+                    @Override
+                    public void onSuccess(long messageTime, long messageId, String msg) {
+                        outputMsg("sendChatMessage P2P");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendChatMessage P2P",answer);
+                    }
+                });
+                break;
+            case 1:
+                break;
+            case 2:
+                ldEngine.RTM.sendFile(toUid,ConversationType.P2P,imageData, imageName,jsonattrs, FileMessageType.IMAGEFILE, new ISendFileCallback() {
+                    @Override
+                    public void onSuccess(long aLong, long aLong2) {
+                        outputMsg("sendFile P2P image");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendFile P2P image",answer);
+                    }
+                });
+                break;
+            case 3:
+                ldEngine.RTM.sendFile(toUid,ConversationType.P2P, audioData, audioName,jsonattrs,  FileMessageType.AUDIOFILE,new ISendFileCallback() {
+                    @Override
+                    public void onSuccess(long aLong, long aLong2) {
+                        outputMsg("sendFile P2P audio");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendFile P2P audio",answer);
+                    }
+                });
+                break;
+            case 4:
+                ldEngine.RTM.sendFile(toUid,ConversationType.P2P,videoData, videoName,jsonattrs,  FileMessageType.VIDEOFILE, new ISendFileCallback() {
+                    @Override
+                    public void onSuccess(long aLong, long aLong2) {
+                        outputMsg("sendFile P2P video");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendFile P2P video",answer);
+                    }
+                });
+                break;
+            case 5:
+                ldEngine.RTM.sendFile(toUid,ConversationType.P2P, normalFileData, normalFileName,jsonattrs,  FileMessageType.NORMALFILE,new ISendFileCallback() {
+                    @Override
+                    public void onSuccess(long aLong, long aLong2) {
+                        outputMsg("sendFile P2P normal");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendFile P2P normal",answer);
+                    }
+                });
+                break;
+            case 6:
+                ldEngine.RTM.sendBasicMessage(toUid,ConversationType.P2P, baseType, sendMsg, userattrs, new ISendMsgCallback() {
+                    @Override
+                    public void onSuccess(long messageTime, long messageId, String msg) {
+                        outputMsg("sendBasicMessage P2P");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendBasicMessage P2P",answer);
+                    }
+                });
+                break;
+            case 7:
+                ldEngine.RTM.sendCMDMessage(toUid,ConversationType.P2P, sendMsg, userattrs, new ISendMsgCallback() {
+                    @Override
+                    public void onSuccess(long messageTime, long messageId, String msg) {
+                        outputMsg("sendCMDMessage P2P");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendCMDMessage P2P",answer);
+                    }
+                });
+                break;
+        }
+
+    }
+    void grouptest(int childPosition){
+        if (ldEngine == null){
+            Utils.alertDialog(this,"请先登录");
+            return;
+        }
+        switch (childPosition){
+            case 0:
+                ldEngine.RTM.sendChatMessage(groupId, ConversationType.GROUP,sendMsg, userattrs,  new ISendMsgCallback() {
+                    @Override
+                    public void onSuccess(long messageTime, long messageId,String msg) {
+                        outputMsg("sendChatMessage Group");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendChatMessage Group",answer);
+                    }
+                });
+                break;
+            case 1:
+                break;
+            case 2:
+                ldEngine.RTM.sendFile(groupId,ConversationType.GROUP,  imageData, imageName,jsonattrs, FileMessageType.IMAGEFILE,new ISendFileCallback() {
+                    @Override
+                    public void onSuccess(long aLong, long aLong2) {
+                        outputMsg("sendFile Group image");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendFile Group image",answer);
+                    }
+                });
+                break;
+            case 3:
+                ldEngine.RTM.sendFile(groupId,ConversationType.GROUP, audioData, audioName,jsonattrs,  FileMessageType.AUDIOFILE,new ISendFileCallback() {
+                    @Override
+                    public void onSuccess(long aLong, long aLong2) {
+                        outputMsg("sendFile Group audio");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendFile Group audio",answer);
+                    }
+                });
+                break;
+            case 4:
+                ldEngine.RTM.sendFile(groupId,ConversationType.GROUP, videoData, videoName,jsonattrs,  FileMessageType.VIDEOFILE,new ISendFileCallback() {
+                    @Override
+                    public void onSuccess(long aLong, long aLong2) {
+                        outputMsg("sendFile Group video");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendFile Group video",answer);
+                    }
+                });
+                break;
+            case 5:
+                ldEngine.RTM.sendFile(groupId,ConversationType.GROUP, normalFileData, normalFileName,jsonattrs, FileMessageType.NORMALFILE, new ISendFileCallback() {
+                    @Override
+                    public void onSuccess(long aLong, long aLong2) {
+                        outputMsg("sendFile Group normal");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendFile Group normal",answer);
+                    }
+                });
+                break;
+            case 6:
+                ldEngine.RTM.sendBasicMessage(groupId,ConversationType.GROUP, baseType, sendMsg, userattrs, new ISendMsgCallback() {
+                    @Override
+                    public void onSuccess(long messageTime, long messageId, String msg) {
+                        outputMsg("sendBasicMessage GROUP");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendBasicMessage GROUP",answer);
+                    }
+                });
+                break;
+            case 7:
+                ldEngine.RTM.sendCMDMessage(groupId,ConversationType.GROUP, sendMsg, userattrs, new ISendMsgCallback() {
+                    @Override
+                    public void onSuccess(long messageTime, long messageId, String msg) {
+                        outputMsg("sendCMDMessage GROUP");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendCMDMessage GROUP",answer);
+                    }
+                });
+                break;
+            case 8:
+                ldEngine.RTM.addGroupMembers(groupId, testUids, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("addGroupMembers gid:"+ groupId);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("addGroupMembers",answer);
+                    }
+                });
+                break;
+            case 9:
+                ldEngine.RTM.removeGroupMembers(groupId, testUids, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("removeGroupMembers gid:" + groupId);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("removeGroupMembers",answer);
+                    }
+                });
+                break;
+            case 10:
+                ldEngine.RTM.getGroupMemberCount(groupId, true, new IDoubleCallBack<Integer, Integer>() {
+                    @Override
+                    public void onSuccess(Integer integer, Integer integer2) {
+                        outputMsg("getGroupMemberCount gid:" + groupId + " count:" + integer + " onlinecount:"+ integer2);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getGroupMemberCount",answer);
+                    }
+                });
+                break;
+            case 11:
+                ldEngine.RTM.getGroupMembers(groupId, true, new ICallback<RTMGroupMembers>() {
+                    @Override
+                    public void onSuccess(RTMGroupMembers rtmGroupMembers) {
+                        outputMsg("getGroupMembers gid:" + groupId + " members:" + rtmGroupMembers.userids.toString() + " onlines:"+ rtmGroupMembers.onlineUserids.toString());
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getGroupMembers",answer);
+                    }
+                });
+                break;
+            case 12:
+                ldEngine.RTM.getGroupsPublicInfo(groupids, new ICallback<Map<Long, String>>() {
+                    @Override
+                    public void onSuccess(Map<Long, String> stringStringMap) {
+                        String msg = "";
+                        for(Long gid: stringStringMap.keySet()){
+                            String tt = "gid:"+ gid+ " publicinfo:" +stringStringMap.get(gid)+"\n";
+                            msg += tt;
+                        }
+                        outputMsg("getGroupsPublicInfo " + msg);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getGroupsPublicInfo ",answer);
+                    }
+                });
+                break;
+            case 13:
+                ldEngine.RTM.getUserGroups(new ICallback<List<Long>>() {
+                    @Override
+                    public void onSuccess(List<Long> longs) {
+                        outputMsg("getUserGroups " + longs.toString());
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getUserGroups ",answer);
+                    }
+                });
+                break;
+            case 14:
+                ldEngine.RTM.setGroupInfo(groupId, "群组公开信息", "群组私有信息", new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("setGroupInfo gid:" + groupId);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("setGroupInfo gid:" + groupId, answer);
+                    }
+                });
+                break;
+            case 15:
+                ldEngine.RTM.getGroupInfo(groupId, new IGetinfoCallback() {
+                    @Override
+                    public void onSuccess(String publicInfo, String privateInfo) {
+                        outputMsg("getGroupInfo gid:" + groupId + " publicInfo:" + publicInfo + " privateInfo:"+privateInfo);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getGroupInfo gid:" + groupId, answer);
+
+                    }
+                });
+                break;
+        }
+
+    }
+    void friendtest(int childPosition){
+        if (ldEngine == null){
+            Utils.alertDialog(this,"请先登录");
+            return;
+        }
+        switch (childPosition){
+            case 0:
+                ldEngine.RTM.addFriends(testUids, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("addFriends");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("addFriends" +  answer.getErrInfo());
+                    }
+                });
+                break;
+            case 1:
+                ldEngine.RTM.deleteFriends(testUids, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("deleteFriends");
+
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("deleteFriends" +  answer);
+
+                    }
+                });
+                break;
+            case 2:
+                ldEngine.RTM.getFriendList(new ICallback<List<Long>>() {
+                    @Override
+                    public void onSuccess(List<Long> longs) {
+                        outputMsg("getFriendList " + longs.toString());
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getFriendList", answer);
+                    }
+                });
+                break;
+            case 3:
+                ldEngine.RTM.addBlacklist(testUids, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("addBlacklist " + testUids.toString());
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("addBlacklist", answer);
+                    }
+                });
+                break;
+            case 4:
+                ldEngine.RTM.deleteBlacklist(testUids, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("delBlacklist " + testUids.toString());
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("delBlacklist", answer);
+                    }
+                });
+                break;
+            case 5:
+                ldEngine.RTM.getBlacklist(new ICallback<List<Long>>() {
+                    @Override
+                    public void onSuccess(List<Long> longs) {
+                        outputMsg("getBlacklist " + longs.toString());
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getBlacklist", answer);
+                    }
+                });
+                break;
+        }
+
+    }
+    void conversitationtest(int childPosition){
+        if (ldEngine == null){
+            Utils.alertDialog(this,"请先登录");
+            return;
+        }
+        List<Integer> searchTypes = new ArrayList<>();
+        searchTypes.add(30);
+        searchTypes.add(31);
+        searchTypes.add(32);
+
+        switch (childPosition){
+            case 0:
+                ldEngine.RTM.getAllConversation(0, null,ConversationType.P2P, new ICallback<List<RTMConversationInfo>>() {
+                    @Override
+                    public void onSuccess(List<RTMConversationInfo> rtmConversationInfos) {
+                        String showmsg = "";
+                        for (RTMConversationInfo rtmConversationInfo: rtmConversationInfos){
+                            String msg = "uid:" +rtmConversationInfo.targetId + " 未读条数:"+rtmConversationInfo.unreadNum +
+                                    " lastmsg:" +rtmConversationInfo.lastHistortMessage.getInfo() + "\n";
+                            showmsg += msg;
+                        }
+                        outputMsg("getConversation P2P" + showmsg);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getConversation P2P" ,answer);
+                    }
+                });
+                break;
+            case 1:
+                ldEngine.RTM.getAllConversation(0, null, ConversationType.GROUP,new ICallback<List<RTMConversationInfo>>() {
+                    @Override
+                    public void onSuccess(List<RTMConversationInfo> rtmConversationInfos) {
+                        String showmsg = "";
+                        for (RTMConversationInfo rtmConversationInfo: rtmConversationInfos){
+                            String msg = "uid:" +rtmConversationInfo.targetId + " 未读条数:"+rtmConversationInfo.unreadNum +
+                                    " lastmsg:" +rtmConversationInfo.lastHistortMessage.getInfo() + "\n";
+                            showmsg += msg;
+                        }
+                        outputMsg("getConversation GROUP" + showmsg);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getConversation GROUP" ,answer);
+                    }
+                });
+                break;
+            case 2:
+                ldEngine.RTM.getAllUnreadConversation(true, 0, null,new ICallback<RTMUnreadConversationInfo>() {
+                    @Override
+                    public void onSuccess(RTMUnreadConversationInfo rtmUnreadConversationInfo) {
+                        String showmsg = "";
+                        for (RTMConversationInfo rtmConversationInfo: rtmUnreadConversationInfo.groupUnread){
+                            String msg = "groupId:" +rtmConversationInfo.targetId + " 未读条数:"+rtmConversationInfo.unreadNum +
+                                    " lastmsg:" +rtmConversationInfo.lastHistortMessage.getInfo() + "\n";
+                            showmsg += msg;
+                        }
+                        for (RTMConversationInfo rtmConversationInfo: rtmUnreadConversationInfo.p2pUnread){
+                            String msg = "uid:" +rtmConversationInfo.targetId + " 未读条数:"+rtmConversationInfo.unreadNum +
+                                    " lastmsg:" +rtmConversationInfo.lastHistortMessage.getInfo() + "\n";
+                            showmsg += msg;
+                        }
+                        outputMsg("getAllUnreadConversation" + showmsg);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+
+                    }
+                });
+                break;
+            case 3:
+                ldEngine.RTM.getMessage( ldEngine.getUid(), toUid, ConversationType.P2P, 12345678, new ICallback<RTMSingleMessage>() {
+                    @Override
+                    public void onSuccess(RTMSingleMessage rtmSingleMessage) {
+                        outputMsg("getMessage" + rtmSingleMessage.getInfo());
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getMessage" ,answer);
+                    }
+                });
+                break;
+            case 4:
+                ldEngine.RTM.deleteMessage(ldEngine.getUid(), toUid, ConversationType.P2P, 12345678, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("deleteMessage" );
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("deleteMessage" ,answer);
+
+                    }
+                });
+                break;
+            case 5:
+                ldEngine.RTM.getHistoryChat(toUid, ConversationType.P2P,true, 10, 0, 0, 0,  new ICallback<RTMHistoryMessageResult>() {
+                    @Override
+                    public void onSuccess(RTMHistoryMessageResult rtmHistoryMessageResult) {
+                        String msg;
+                        outputMsg("getHistoryChatMessage count:" + rtmHistoryMessageResult.count + " beginMsec:" + rtmHistoryMessageResult.beginMsec
+                                + " endMsec:"+ rtmHistoryMessageResult.endMsec + " lastcurid:" + rtmHistoryMessageResult.lastId);
+
+                        for (RTMHistoryMessage hm : rtmHistoryMessageResult.messages) {
+                            addLog(hm.getInfo());
+                        }
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getHistoryChatMessage", answer);
+                    }
+                });
+                break;
+        }
+
+
+    }
+    void usertest(int childPosition){
+        if (ldEngine == null){
+            Utils.alertDialog(this,"请先登录");
+            return;
+        }
+        switch (childPosition){
+            case 0:
+                ldEngine.RTM.addDevice("123456789", new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("addDevice");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("addDevice",answer);
+                    }
+                });
+                break;
+            case 1:
+                ldEngine.RTM.removeDevice("123456789", new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("removeDevice");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("removeDevice",answer);
+                    }
+                });
+                break;
+            case 2:
+                ldEngine.RTM.addDevicePushOption(0, toUid, null, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("addDevicePushOption");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("addDevicePushOption",answer);
+                    }
+                });
+                break;
+            case 3:
+                ldEngine.RTM.removeDevicePushOption(0, toUid, null, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("removeDevicePushOption");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("removeDevicePushOption",answer);
+                    }
+                });
+                break;
+            case 4:
+                ldEngine.RTM.getDevicePushOption(new ICallback<DevicePushOption>() {
+                    @Override
+                    public void onSuccess(DevicePushOption devicePushOption) {
+                        outputMsg("getDevicePushOption");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getDevicePushOption",answer);
+                    }
+                });
+                break;
+            case 5:
+                ldEngine.RTM.setUserInfo("我的公开信息", "我的私有信息", new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("setUserInfo");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("setUserInfo",answer);
+                    }
+                });
+                break;
+            case 6:
+                ldEngine.RTM.getUserInfo(new IGetinfoCallback() {
+                    @Override
+                    public void onSuccess(String publicInfo, String privateInfo) {
+                        outputMsg("getUserInfo publicInfo:"+ publicInfo + " privateInfo:"+privateInfo);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getUserInfo",answer);
+                    }
+                });
+                break;
+            case 7:
+                ldEngine.RTM.getUserPublicInfo(testUids, new ICallback<Map<Long, String>>() {
+                    @Override
+                    public void onSuccess(Map<Long, String> stringStringMap) {
+                        String msg = "";
+                        for(Long uid: stringStringMap.keySet()){
+                            String tt = "uid:"+ uid+ " publicinfo:" +stringStringMap.get(uid)+"\n";
+                            msg += tt;
+                        }
+                        outputMsg("getUserPublicInfo " + msg);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getUserPublicInfo ",answer);
+
+                    }
+                });
+                break;
+            case 8:
+                ldEngine.RTM.dataSet("setkey", "123", new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("dataSet");
+
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("dataSet ",answer);
+
+                    }
+                });
+                break;
+            case 9:
+                ldEngine.RTM.dataGet("setkey", new ICallback<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        outputMsg("dataGet value:"+s);
+
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("dataGet ",answer);
+
+                    }
+                });
+                break;
+            case 10:
+                ldEngine.RTM.dataDelete("setkey", new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("dataDelete ");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("dataDelete ",answer);
+                    }
+                });
+                break;
+        }
+
+    }
+    void roomtest(int childPosition){
+        if (ldEngine == null){
+            Utils.alertDialog(this,"请先登录");
+            return;
+        }
+        switch (childPosition){
+            case 0:
+                ldEngine.RTM.sendChatMessage(roomId,  ConversationType.ROOM, sendMsg, userattrs, new ISendMsgCallback() {
+                    @Override
+                    public void onSuccess(long messageTime, long messageId, String msg) {
+                        outputMsg("sendChatMessage ROOM");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendChatMessage ROOM",answer);
+                    }
+                });
+                break;
+            case 1:
+                ldEngine.RTM.sendBasicMessage(roomId,  ConversationType.ROOM, baseType,sendMsg, userattrs, new ISendMsgCallback() {
+                    @Override
+                    public void onSuccess(long messageTime, long messageId, String msg) {
+                        outputMsg("sendBasicMessage ROOM");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("sendBasicMessage ROOM",answer);
+                    }
+                });
+                break;
+            case 2:
+                ldEngine.RTM.enterRoom(roomId, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("enterRoom ");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("enterRoom ", answer);
+                    }
+                });
+                break;
+            case 3:
+                ldEngine.RTM.leaveRoom(roomId, new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("leaveRoom ");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("leaveRoom ", answer);
+                    }
+                });
+                break;
+            case 4:
+                ldEngine.RTM.getRoomMembers(roomId, new ICallback<List<Long>>() {
+                    @Override
+                    public void onSuccess(List<Long> longs) {
+                        outputMsg("getRoomMembers " + longs.toString());
+
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getRoomMembers ",answer);
+                    }
+                });
+                break;
+            case 5:
+                ldEngine.RTM.getRoomMemberCount(roomIds, new ICallback<Map<Long, Integer>>() {
+                    @Override
+                    public void onSuccess(Map<Long, Integer> longIntegerMap) {
+                        String msg = "";
+                        for(Long rid: longIntegerMap.keySet()){
+                            String tt = "roomid:"+ rid+ " publicinfo:" +longIntegerMap.get(rid)+"\n";
+                            msg += tt;
+                        }
+                        outputMsg("getRoomMemberCount " + msg);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+
+                    }
+                });
+                break;
+            case 6:
+                ldEngine.RTM.getUserRooms(new ICallback<List<Long>>() {
+                    @Override
+                    public void onSuccess(List<Long> longs) {
+                        outputMsg("getUserRooms rooms:" + longs);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getUserRooms " ,answer);
+                    }
+                });
+                break;
+            case 7:
+                ldEngine.RTM.setRoomInfo(roomId,"房间公开信息", "房间私有信息", new IEmptyCallback() {
+                    @Override
+                    public void onSuccess() {
+                        outputMsg("setRoomInfo");
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("setRoomInfo",answer);
+                    }
+                });
+                break;
+            case 8:
+                ldEngine.RTM.getRoomInfo(roomId,new IGetinfoCallback() {
+                    @Override
+                    public void onSuccess(String publicInfo, String privateInfo) {
+                        outputMsg("getRoomInfo publicInfo:"+ publicInfo + " privateInfo:"+privateInfo);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getRoomInfo",answer);
+                    }
+                });
+                break;
+            case 9:
+                ldEngine.RTM.getRoomsPublicInfo(roomIds, new ICallback<Map<Long, String>>() {
+                    @Override
+                    public void onSuccess(Map<Long, String> stringStringMap) {
+                        String msg = "";
+                        for(long rid: stringStringMap.keySet()){
+                            String tt = "roomid:"+ rid+ " publicinfo:" +stringStringMap.get(rid)+"\n";
+                            msg += tt;
+                        }
+                        outputMsg("getRoomsPublicInfo " + msg);
+                    }
+
+                    @Override
+                    public void onError(LDAnswer answer) {
+                        outputMsg("getRoomsPublicInfo",answer);
+
+                    }
+                });
+                break;
+        }
+
     }
 
     String transConversationType(ConversationType conversationType){
@@ -295,813 +1137,24 @@ public class livedata_rtmtest extends AppCompatActivity implements View.OnClickL
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 if (groupPosition == 0){
-                    switch (childPosition){
-                        case 0:
-                            ldEngine.RTM.sendChatMessage(toUid,  ConversationType.P2P, sendMsg, userattrs, new ISendMsgCallback() {
-                                @Override
-                                public void onSuccess(long messageTime, long messageId, String msg) {
-                                    outputMsg("sendChatMessage P2P");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendChatMessage P2P",answer);
-                                }
-                            });
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            ldEngine.RTM.sendFile(toUid,ConversationType.P2P,imageData, imageName,jsonattrs, FileMessageType.IMAGEFILE, new ISendFileCallback() {
-                                @Override
-                                public void onSuccess(long aLong, long aLong2) {
-                                    outputMsg("sendFile P2P image");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendFile P2P image",answer);
-                                }
-                            });
-                            break;
-                        case 3:
-                            ldEngine.RTM.sendFile(toUid,ConversationType.P2P, audioData, audioName,jsonattrs,  FileMessageType.AUDIOFILE,new ISendFileCallback() {
-                                @Override
-                                public void onSuccess(long aLong, long aLong2) {
-                                    outputMsg("sendFile P2P audio");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendFile P2P audio",answer);
-                                }
-                            });
-                            break;
-                        case 4:
-                            ldEngine.RTM.sendFile(toUid,ConversationType.P2P,videoData, videoName,jsonattrs,  FileMessageType.VIDEOFILE, new ISendFileCallback() {
-                                @Override
-                                public void onSuccess(long aLong, long aLong2) {
-                                    outputMsg("sendFile P2P video");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendFile P2P video",answer);
-                                }
-                            });
-                            break;
-                        case 5:
-                            ldEngine.RTM.sendFile(toUid,ConversationType.P2P, normalFileData, normalFileName,jsonattrs,  FileMessageType.NORMALFILE,new ISendFileCallback() {
-                                @Override
-                                public void onSuccess(long aLong, long aLong2) {
-                                    outputMsg("sendFile P2P normal");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendFile P2P normal",answer);
-                                }
-                            });
-                            break;
-                        case 6:
-                            ldEngine.RTM.sendBasicMessage(toUid,ConversationType.P2P, baseType, sendMsg, userattrs, new ISendMsgCallback() {
-                                @Override
-                                public void onSuccess(long messageTime, long messageId, String msg) {
-                                    outputMsg("sendBasicMessage P2P");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendBasicMessage P2P",answer);
-                                }
-                            });
-                            break;
-                        case 7:
-                            ldEngine.RTM.sendCMDMessage(toUid,ConversationType.P2P, sendMsg, userattrs, new ISendMsgCallback() {
-                                @Override
-                                public void onSuccess(long messageTime, long messageId, String msg) {
-                                    outputMsg("sendCMDMessage P2P");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendCMDMessage P2P",answer);
-                                }
-                            });
-                            break;
-                    }
+                    p2ptest(childPosition);
                 }
                 else if (groupPosition == 1){
-                    switch (childPosition){
-                        case 0:
-                            ldEngine.RTM.sendChatMessage(groupId, ConversationType.GROUP,sendMsg, userattrs,  new ISendMsgCallback() {
-                                @Override
-                                public void onSuccess(long messageTime, long messageId,String msg) {
-                                    outputMsg("sendChatMessage Group");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendChatMessage Group",answer);
-                                }
-                            });
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            ldEngine.RTM.sendFile(groupId,ConversationType.GROUP,  imageData, imageName,jsonattrs, FileMessageType.IMAGEFILE,new ISendFileCallback() {
-                                @Override
-                                public void onSuccess(long aLong, long aLong2) {
-                                    outputMsg("sendFile Group image");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendFile Group image",answer);
-                                }
-                            });
-                            break;
-                        case 3:
-                            ldEngine.RTM.sendFile(groupId,ConversationType.GROUP, audioData, audioName,jsonattrs,  FileMessageType.AUDIOFILE,new ISendFileCallback() {
-                                @Override
-                                public void onSuccess(long aLong, long aLong2) {
-                                    outputMsg("sendFile Group audio");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendFile Group audio",answer);
-                                }
-                            });
-                            break;
-                        case 4:
-                            ldEngine.RTM.sendFile(groupId,ConversationType.GROUP, videoData, videoName,jsonattrs,  FileMessageType.VIDEOFILE,new ISendFileCallback() {
-                                @Override
-                                public void onSuccess(long aLong, long aLong2) {
-                                    outputMsg("sendFile Group video");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendFile Group video",answer);
-                                }
-                            });
-                            break;
-                        case 5:
-                            ldEngine.RTM.sendFile(groupId,ConversationType.GROUP, normalFileData, normalFileName,jsonattrs, FileMessageType.NORMALFILE, new ISendFileCallback() {
-                                @Override
-                                public void onSuccess(long aLong, long aLong2) {
-                                    outputMsg("sendFile Group normal");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendFile Group normal",answer);
-                                }
-                            });
-                            break;
-                        case 6:
-                            ldEngine.RTM.sendBasicMessage(groupId,ConversationType.GROUP, baseType, sendMsg, userattrs, new ISendMsgCallback() {
-                                @Override
-                                public void onSuccess(long messageTime, long messageId, String msg) {
-                                    outputMsg("sendBasicMessage GROUP");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendBasicMessage GROUP",answer);
-                                }
-                            });
-                            break;
-                        case 7:
-                            ldEngine.RTM.sendCMDMessage(groupId,ConversationType.GROUP, sendMsg, userattrs, new ISendMsgCallback() {
-                                @Override
-                                public void onSuccess(long messageTime, long messageId, String msg) {
-                                    outputMsg("sendCMDMessage GROUP");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendCMDMessage GROUP",answer);
-                                }
-                            });
-                            break;
-                        case 8:
-                            ldEngine.RTM.addGroupMembers(groupId, testUids, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("addGroupMembers gid:"+ groupId);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("addGroupMembers",answer);
-                                }
-                            });
-                            break;
-                        case 9:
-                            ldEngine.RTM.removeGroupMembers(groupId, testUids, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("removeGroupMembers gid:" + groupId);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("removeGroupMembers",answer);
-                                }
-                            });
-                            break;
-                        case 10:
-                            ldEngine.RTM.getGroupMemberCount(groupId, true, new IDoubleCallBack<Integer, Integer>() {
-                                @Override
-                                public void onSuccess(Integer integer, Integer integer2) {
-                                    outputMsg("getGroupMemberCount gid:" + groupId + " count:" + integer + " onlinecount:"+ integer2);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getGroupMemberCount",answer);
-                                }
-                            });
-                            break;
-                        case 11:
-                            ldEngine.RTM.getGroupMembers(groupId, true, new ICallback<RTMGroupMembers>() {
-                                @Override
-                                public void onSuccess(RTMGroupMembers rtmGroupMembers) {
-                                    outputMsg("getGroupMembers gid:" + groupId + " members:" + rtmGroupMembers.userids.toString() + " onlines:"+ rtmGroupMembers.onlineUserids.toString());
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getGroupMembers",answer);
-                                }
-                            });
-                            break;
-                        case 12:
-                            ldEngine.RTM.getGroupsPublicInfo(groupids, new ICallback<Map<Long, String>>() {
-                                @Override
-                                public void onSuccess(Map<Long, String> stringStringMap) {
-                                    String msg = "";
-                                    for(Long gid: stringStringMap.keySet()){
-                                        String tt = "gid:"+ gid+ " publicinfo:" +stringStringMap.get(gid)+"\n";
-                                        msg += tt;
-                                    }
-                                    outputMsg("getGroupsPublicInfo " + msg);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getGroupsPublicInfo ",answer);
-                                }
-                            });
-                            break;
-                        case 13:
-                            ldEngine.RTM.getUserGroups(new ICallback<List<Long>>() {
-                                @Override
-                                public void onSuccess(List<Long> longs) {
-                                    outputMsg("getUserGroups " + longs.toString());
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getUserGroups ",answer);
-                                }
-                            });
-                            break;
-                        case 14:
-                            ldEngine.RTM.setGroupInfo(groupId, "群组公开信息", "群组私有信息", new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("setGroupInfo gid:" + groupId);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("setGroupInfo gid:" + groupId, answer);
-                                }
-                            });
-                            break;
-                        case 15:
-                            ldEngine.RTM.getGroupInfo(groupId, new IGetinfoCallback() {
-                                @Override
-                                public void onSuccess(String publicInfo, String privateInfo) {
-                                    outputMsg("getGroupInfo gid:" + groupId + " publicInfo:" + publicInfo + " privateInfo:"+privateInfo);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getGroupInfo gid:" + groupId, answer);
-
-                                }
-                            });
-                            break;
-                    }
+                    grouptest(childPosition);
                 }
 
                 else if (groupPosition == 2){
-                    switch (childPosition){
-                        case 0:
-                            ldEngine.RTM.addFriends(testUids, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("addFriends");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("addFriends" +  answer.getErrInfo());
-                                }
-                            });
-                            break;
-                        case 1:
-                            ldEngine.RTM.deleteFriends(testUids, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("deleteFriends");
-
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("deleteFriends" +  answer);
-
-                                }
-                            });
-                            break;
-                        case 2:
-                            ldEngine.RTM.getFriendList(new ICallback<List<Long>>() {
-                                @Override
-                                public void onSuccess(List<Long> longs) {
-                                    outputMsg("getFriendList " + longs.toString());
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getFriendList", answer);
-                                }
-                            });
-                            break;
-                        case 3:
-                            ldEngine.RTM.addBlacklist(testUids, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("addBlacklist " + testUids.toString());
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("addBlacklist", answer);
-                                }
-                            });
-                            break;
-                        case 4:
-                            ldEngine.RTM.deleteBlacklist(testUids, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("delBlacklist " + testUids.toString());
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("delBlacklist", answer);
-                                }
-                            });
-                            break;
-                        case 5:
-                            ldEngine.RTM.getBlacklist(new ICallback<List<Long>>() {
-                                @Override
-                                public void onSuccess(List<Long> longs) {
-                                    outputMsg("getBlacklist " + longs.toString());
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getBlacklist", answer);
-                                }
-                            });
-                            break;
-                    }
+                    friendtest(childPosition);
                 }
                 else if (groupPosition == 3){
-                    List<Integer> searchTypes = new ArrayList<>();
-                    searchTypes.add(30);
-                    searchTypes.add(31);
-                    searchTypes.add(32);
-                    switch (childPosition){
-                        case 0:
-                            ldEngine.RTM.getAllConversation(0, null,ConversationType.P2P, new ICallback<List<RTMConversationInfo>>() {
-                                @Override
-                                public void onSuccess(List<RTMConversationInfo> rtmConversationInfos) {
-                                    String showmsg = "";
-                                    for (RTMConversationInfo rtmConversationInfo: rtmConversationInfos){
-                                        String msg = "uid:" +rtmConversationInfo.targetId + " 未读条数:"+rtmConversationInfo.unreadNum +
-                                                " lastmsg:" +rtmConversationInfo.lastHistortMessage.getInfo() + "\n";
-                                        showmsg += msg;
-                                    }
-                                    outputMsg("getConversation P2P" + showmsg);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getConversation P2P" ,answer);
-                                }
-                            });
-                            break;
-                        case 1:
-                            ldEngine.RTM.getAllConversation(0, null, ConversationType.GROUP,new ICallback<List<RTMConversationInfo>>() {
-                                @Override
-                                public void onSuccess(List<RTMConversationInfo> rtmConversationInfos) {
-                                    String showmsg = "";
-                                    for (RTMConversationInfo rtmConversationInfo: rtmConversationInfos){
-                                        String msg = "uid:" +rtmConversationInfo.targetId + " 未读条数:"+rtmConversationInfo.unreadNum +
-                                                " lastmsg:" +rtmConversationInfo.lastHistortMessage.getInfo() + "\n";
-                                        showmsg += msg;
-                                    }
-                                    outputMsg("getConversation GROUP" + showmsg);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getConversation GROUP" ,answer);
-                                }
-                            });
-                            break;
-                        case 2:
-                            ldEngine.RTM.getAllUnreadConversation(true, 0, null,new ICallback<RTMUnreadConversationInfo>() {
-                                @Override
-                                public void onSuccess(RTMUnreadConversationInfo rtmUnreadConversationInfo) {
-                                    String showmsg = "";
-                                    for (RTMConversationInfo rtmConversationInfo: rtmUnreadConversationInfo.groupUnread){
-                                        String msg = "groupId:" +rtmConversationInfo.targetId + " 未读条数:"+rtmConversationInfo.unreadNum +
-                                                " lastmsg:" +rtmConversationInfo.lastHistortMessage.getInfo() + "\n";
-                                        showmsg += msg;
-                                    }
-                                    for (RTMConversationInfo rtmConversationInfo: rtmUnreadConversationInfo.p2pUnread){
-                                        String msg = "uid:" +rtmConversationInfo.targetId + " 未读条数:"+rtmConversationInfo.unreadNum +
-                                                " lastmsg:" +rtmConversationInfo.lastHistortMessage.getInfo() + "\n";
-                                        showmsg += msg;
-                                    }
-                                    outputMsg("getAllUnreadConversation" + showmsg);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-
-                                }
-                            });
-                            break;
-                        case 3:
-                            ldEngine.RTM.getMessage( ldEngine.getUid(), toUid, ConversationType.P2P, 12345678, new ICallback<RTMSingleMessage>() {
-                                @Override
-                                public void onSuccess(RTMSingleMessage rtmSingleMessage) {
-                                    outputMsg("getMessage" + rtmSingleMessage.getInfo());
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getMessage" ,answer);
-                                }
-                            });
-                            break;
-                        case 4:
-                            ldEngine.RTM.deleteMessage(ldEngine.getUid(), toUid, ConversationType.P2P, 12345678, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("deleteMessage" );
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("deleteMessage" ,answer);
-
-                                }
-                            });
-                            break;
-                        case 5:
-                            ldEngine.RTM.getHistoryChat(toUid, ConversationType.P2P,true, 10, 0, 0, 0,  new ICallback<RTMHistoryMessageResult>() {
-                                @Override
-                                public void onSuccess(RTMHistoryMessageResult rtmHistoryMessageResult) {
-                                    String msg;
-                                    outputMsg("getHistoryChatMessage count:" + rtmHistoryMessageResult.count + " beginMsec:" + rtmHistoryMessageResult.beginMsec
-                                            + " endMsec:"+ rtmHistoryMessageResult.endMsec + " lastcurid:" + rtmHistoryMessageResult.lastId);
-
-                                    for (RTMHistoryMessage hm : rtmHistoryMessageResult.messages) {
-                                        addLog(hm.getInfo());
-                                    }
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getHistoryChatMessage", answer);
-                                }
-                            });
-                            break;
-                    }
+                    conversitationtest(childPosition);
                 }
 
                 else if (groupPosition == 4){
-                    switch (childPosition){
-                        case 0:
-                            ldEngine.RTM.addDevice("123456789", new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("addDevice");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("addDevice",answer);
-                                }
-                            });
-                            break;
-                        case 1:
-                            ldEngine.RTM.removeDevice("123456789", new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("removeDevice");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("removeDevice",answer);
-                                }
-                            });
-                            break;
-                        case 2:
-                            ldEngine.RTM.addDevicePushOption(0, toUid, null, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("addDevicePushOption");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("addDevicePushOption",answer);
-                                }
-                            });
-                            break;
-                        case 3:
-                            ldEngine.RTM.removeDevicePushOption(0, toUid, null, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("removeDevicePushOption");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("removeDevicePushOption",answer);
-                                }
-                            });
-                            break;
-                        case 4:
-                            ldEngine.RTM.getDevicePushOption(new ICallback<DevicePushOption>() {
-                                @Override
-                                public void onSuccess(DevicePushOption devicePushOption) {
-                                    outputMsg("getDevicePushOption");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getDevicePushOption",answer);
-                                }
-                            });
-                            break;
-                        case 5:
-                            ldEngine.RTM.setUserInfo("我的公开信息", "我的私有信息", new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("setUserInfo");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("setUserInfo",answer);
-                                }
-                            });
-                            break;
-                        case 6:
-                            ldEngine.RTM.getUserInfo(new IGetinfoCallback() {
-                                @Override
-                                public void onSuccess(String publicInfo, String privateInfo) {
-                                    outputMsg("getUserInfo publicInfo:"+ publicInfo + " privateInfo:"+privateInfo);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getUserInfo",answer);
-                                }
-                            });
-                            break;
-                        case 7:
-                            ldEngine.RTM.getUserPublicInfo(testUids, new ICallback<Map<Long, String>>() {
-                                @Override
-                                public void onSuccess(Map<Long, String> stringStringMap) {
-                                    String msg = "";
-                                    for(Long uid: stringStringMap.keySet()){
-                                        String tt = "uid:"+ uid+ " publicinfo:" +stringStringMap.get(uid)+"\n";
-                                        msg += tt;
-                                    }
-                                    outputMsg("getUserPublicInfo " + msg);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getUserPublicInfo ",answer);
-
-                                }
-                            });
-                            break;
-                        case 8:
-                            ldEngine.RTM.dataSet("setkey", "123", new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("dataSet");
-
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("dataSet ",answer);
-
-                                }
-                            });
-                            break;
-                        case 9:
-                            ldEngine.RTM.dataGet("setkey", new ICallback<String>() {
-                                @Override
-                                public void onSuccess(String s) {
-                                    outputMsg("dataGet value:"+s);
-
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("dataGet ",answer);
-
-                                }
-                            });
-                            break;
-                        case 10:
-                            ldEngine.RTM.dataDelete("setkey", new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("dataDelete ");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("dataDelete ",answer);
-                                }
-                            });
-                            break;
-                    }
+                    usertest(childPosition);
                 }
                 else if (groupPosition == 5){
-                    switch (childPosition){
-                        case 0:
-                            ldEngine.RTM.sendChatMessage(roomId,  ConversationType.ROOM, sendMsg, userattrs, new ISendMsgCallback() {
-                                @Override
-                                public void onSuccess(long messageTime, long messageId, String msg) {
-                                    outputMsg("sendChatMessage ROOM");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendChatMessage ROOM",answer);
-                                }
-                            });
-                            break;
-                        case 1:
-                            ldEngine.RTM.sendBasicMessage(roomId,  ConversationType.ROOM, baseType,sendMsg, userattrs, new ISendMsgCallback() {
-                                @Override
-                                public void onSuccess(long messageTime, long messageId, String msg) {
-                                    outputMsg("sendBasicMessage ROOM");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("sendBasicMessage ROOM",answer);
-                                }
-                            });
-                            break;
-                        case 2:
-                            ldEngine.RTM.enterRoom(roomId, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("enterRoom ");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("enterRoom ", answer);
-                                }
-                            });
-                            break;
-                        case 3:
-                            ldEngine.RTM.leaveRoom(roomId, new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("leaveRoom ");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("leaveRoom ", answer);
-                                }
-                            });
-                            break;
-                        case 4:
-                            ldEngine.RTM.getRoomMembers(roomId, new ICallback<List<Long>>() {
-                                @Override
-                                public void onSuccess(List<Long> longs) {
-                                    outputMsg("getRoomMembers " + longs.toString());
-
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getRoomMembers ",answer);
-                                }
-                            });
-                            break;
-                        case 5:
-                            ldEngine.RTM.getRoomMemberCount(roomIds, new ICallback<Map<Long, Integer>>() {
-                                @Override
-                                public void onSuccess(Map<Long, Integer> longIntegerMap) {
-                                    String msg = "";
-                                    for(Long rid: longIntegerMap.keySet()){
-                                        String tt = "roomid:"+ rid+ " publicinfo:" +longIntegerMap.get(rid)+"\n";
-                                        msg += tt;
-                                    }
-                                    outputMsg("getRoomMemberCount " + msg);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-
-                                }
-                            });
-                            break;
-                        case 6:
-                            ldEngine.RTM.getUserRooms(new ICallback<List<Long>>() {
-                                @Override
-                                public void onSuccess(List<Long> longs) {
-                                    outputMsg("getRoomMemberCount ");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getRoomMemberCount " ,answer);
-                                }
-                            });
-                            break;
-                        case 7:
-                            ldEngine.RTM.setRoomInfo(roomId,"房间公开信息", "房间私有信息", new IEmptyCallback() {
-                                @Override
-                                public void onSuccess() {
-                                    outputMsg("setRoomInfo");
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("setRoomInfo",answer);
-                                }
-                            });
-                            break;
-                        case 8:
-                            ldEngine.RTM.getRoomInfo(roomId,new IGetinfoCallback() {
-                                @Override
-                                public void onSuccess(String publicInfo, String privateInfo) {
-                                    outputMsg("getRoomInfo publicInfo:"+ publicInfo + " privateInfo:"+privateInfo);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getRoomInfo",answer);
-                                }
-                            });
-                            break;
-                        case 9:
-                            ldEngine.RTM.getRoomsPublicInfo(roomIds, new ICallback<Map<Long, String>>() {
-                                @Override
-                                public void onSuccess(Map<Long, String> stringStringMap) {
-                                    String msg = "";
-                                    for(long rid: stringStringMap.keySet()){
-                                        String tt = "roomid:"+ rid+ " publicinfo:" +stringStringMap.get(rid)+"\n";
-                                        msg += tt;
-                                    }
-                                    outputMsg("getRoomsPublicInfo " + msg);
-                                }
-
-                                @Override
-                                public void onError(LDAnswer answer) {
-                                    outputMsg("getRoomsPublicInfo",answer);
-
-                                }
-                            });
-                            break;
-                    }
+                    roomtest(childPosition);
                 }
                 return true;
             }

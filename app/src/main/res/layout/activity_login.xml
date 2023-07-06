@@ -9,10 +9,33 @@
 
 
     <RelativeLayout
+        android:id="@+id/voiceroom"
+        android:layout_width="351dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/start_voice_bg"
+        app:layout_constraintEnd_toEndOf="@+id/p2ptest"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/p2ptest"
+        app:layout_constraintTop_toBottomOf="@+id/p2ptest">
+
+        <TextView
+            android:id="@+id/yuliaofang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="语聊房"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/p2ptest"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/start_voice_bg"
         app:layout_constraintEnd_toEndOf="@+id/startTransVoice"
         app:layout_constraintStart_toStartOf="@+id/startTransVoice"

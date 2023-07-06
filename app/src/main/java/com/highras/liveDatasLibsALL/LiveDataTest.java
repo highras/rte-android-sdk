@@ -5,8 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaFormat;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
+
+import com.LiveDataRTE.VoiceRoomLib.AudioCodec;
+import com.livedata.rtc.RTCEngine;
 
 import org.angmarch.views.NiceSpinner;
 
@@ -52,6 +57,7 @@ public class LiveDataTest extends AppCompatActivity  implements View.OnClickList
     public void onClick(View v) {
         Class obj = null;
         if (v.getId() == R.id.imtest) {
+
             setAddress();
             obj = livedata_imtest.class;
         }
@@ -63,7 +69,6 @@ public class LiveDataTest extends AppCompatActivity  implements View.OnClickList
             setAddress();
             obj = LoginActivity.class;
         }
-
         Intent intent = new Intent(LiveDataTest.this, obj);
         startActivity(intent);
     }
