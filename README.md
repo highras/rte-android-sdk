@@ -1,18 +1,14 @@
 ### LiveDataEngine-sdk 使用文档
-
-- [版本支持](#版本支持)
 - [依赖集成](#依赖集成)
 - [使用说明](#使用说明)
 - [使用示例](#使用示例)
 - [接口说明](#接口说明)
 
 
-### 版本支持
-  
-- RTM和IM功能最低支持Android版本为5.0(api-21) app/libs/LiveDataRTE-sdk.aar
-  带有RTC实时音频功能最低支持Android版本为5.0(api-21) app/libs/LiveDataRTE-audio-sdk.aar
-  带有RTC实时音视)功能最低支持Android版本为7.0(api-24) app/libs/LiveDataRTE-full-sdk.aar
 ### 依赖集成
+- RTM和IM功能最低支持Android版本为5.0(api-21)         app/libs/LiveDataRTE-sdk.aar
+- 带有RTC实时音频功能最低支持Android版本为5.0(api-21)  app/libs/LiveDataRTE-audio-sdk.aar
+- 带有RTC实时音视)功能最低支持Android版本为7.0(api-24) app/libs/LiveDataRTE-full-sdk.aar
 
 
 ### 使用说明
@@ -33,14 +29,13 @@
   
   
 - 说明:
-  LDEngine里分为RTM,IM,RTC,ValueAdd,VoicRoomClient对象 
-    RTM为基础的信令传输 
-    IM在RTM的基础上增加了各种推送和通知功能
-    RTC为实时音视频功能
-    ValueAdd为增值服务(翻译,审核)
-    VoicRoomClient为语聊房场景
-  
-  RTM和IM功能为互斥关系 IMPushProcessor和IRTMPushProcessor只能设置一个
+    - LDEngine里分为RTM,IM,RTC,ValueAdd,VoicRoomClient对象
+    - RTM为基础的信令传输 
+    - IM在RTM的基础上增加了各种推送和通知功能
+    - RTC为实时音视频功能
+    - ValueAdd为增值服务(翻译,审核)
+    - VoicRoomClient为语聊房场景
+  - RTM和IM功能为互斥关系 IMPushProcessor和IRTMPushProcessor只能设置一个
   - 服务器push消息:请实现自己需要的push系列函数(所有push函数在子线程执行，如需更新ui请自行切回主线程)
   - 各项服务配置和增值服务可以在后台配置，请登陆管理后台预览详细的配置参数
   - room和group的区别 group在服务端会持久化 room是非持久化(用户下线或者RTM链接断开会自动离开room)
