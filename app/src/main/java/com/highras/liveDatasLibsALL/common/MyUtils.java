@@ -6,10 +6,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 
-/**
- * @author fengzi
- * @date 2022/6/6 10:08
- */
 public class MyUtils {
     public static boolean isEmpty(String data) {
         return data == null || data.length() == 0;

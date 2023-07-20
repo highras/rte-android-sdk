@@ -678,7 +678,7 @@ public class TestVideoActivity extends BaseActivity implements View.OnClickListe
         if (!cameraOpen)
             return;
         useFront = !useFront;
-        RTCEngine.switchCamera(useFront);
+        ldEngine.RTC.switchCamera(useFront);
     }
 
     MemberAdapter memberAdapter;

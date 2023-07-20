@@ -11,37 +11,134 @@
         android:id="@+id/audioeffect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         android:text="播放音效"
-        app:layout_constraintStart_toEndOf="@+id/bgmselect"
-        app:layout_constraintTop_toBottomOf="@+id/resumeBGM"></Button>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/closevoice"></Button>
 
     <Button
-        android:id="@+id/bgmselect"
+        android:id="@+id/audioeffectpause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="20dp"
-        android:text="选择bgm"
-        app:layout_constraintStart_toEndOf="@+id/closevoice"
-        app:layout_constraintTop_toBottomOf="@+id/leaveroom"></Button>
+        android:layout_marginStart="16dp"
+        android:text="暂停音效"
+        app:layout_constraintBottom_toBottomOf="@+id/audioeffect"
+        app:layout_constraintStart_toEndOf="@+id/audioeffect"
+        app:layout_constraintTop_toTopOf="@+id/audioeffect"
+        app:layout_constraintVertical_bias="0.0"></Button>
+
+    <Button
+        android:id="@+id/resumeaudioeffect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="恢复音效"
+        app:layout_constraintBottom_toBottomOf="@+id/audioeffectpause"
+        app:layout_constraintStart_toEndOf="@+id/audioeffectpause"
+        app:layout_constraintTop_toTopOf="@+id/audioeffectpause"
+        app:layout_constraintVertical_bias="1.0"></Button>
+
+    <Button
+        android:id="@+id/resumeaudioeffect1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="恢复音效1"
+        app:layout_constraintBottom_toBottomOf="@+id/audioeffectpause1"
+        app:layout_constraintStart_toEndOf="@+id/audioeffectpause1"
+        app:layout_constraintTop_toBottomOf="@+id/audioeffectpause"
+        app:layout_constraintVertical_bias="0.0"></Button>
+
+    <Button
+        android:id="@+id/stopaudioeffect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="停止音效"
+        app:layout_constraintBottom_toBottomOf="@+id/resumeaudioeffect"
+        app:layout_constraintStart_toEndOf="@+id/resumeaudioeffect"
+        app:layout_constraintTop_toTopOf="@+id/resumeaudioeffect"
+        app:layout_constraintVertical_bias="0.0"></Button>
+
+    <Button
+        android:id="@+id/stopaudioeffect1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="停止音效1"
+        app:layout_constraintBottom_toBottomOf="@+id/resumeaudioeffect1"
+        app:layout_constraintStart_toEndOf="@+id/resumeaudioeffect1"
+        app:layout_constraintTop_toTopOf="@+id/resumeaudioeffect1"
+        app:layout_constraintVertical_bias="0.0"></Button>
+
+    <Button
+        android:id="@+id/audioeffectpause1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="暂停音效1"
+        app:layout_constraintBottom_toBottomOf="@+id/audioeffect1"
+        app:layout_constraintStart_toEndOf="@+id/audioeffect1"
+        app:layout_constraintTop_toBottomOf="@+id/audioeffect"
+        app:layout_constraintVertical_bias="0.0"></Button>
+
+    <Button
+        android:id="@+id/audioeffect1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="播放音效1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/audioeffect"></Button>
+
+    <Button
+        android:id="@+id/pauseaudioeffectall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="暂停所有音效"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/audioeffect1"></Button>
+
+    <Button
+        android:id="@+id/resumeaudioeffectall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="恢复所有音效"
+        app:layout_constraintBottom_toBottomOf="@+id/pauseaudioeffectall"
+        app:layout_constraintStart_toEndOf="@+id/pauseaudioeffectall"
+        app:layout_constraintTop_toTopOf="@+id/pauseaudioeffectall"></Button>
+
+    <Button
+        android:id="@+id/stopaudioeffectall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="停止所有音效"
+        app:layout_constraintBottom_toBottomOf="@+id/resumeaudioeffectall"
+        app:layout_constraintStart_toEndOf="@+id/resumeaudioeffectall"
+        app:layout_constraintTop_toTopOf="@+id/resumeaudioeffectall"></Button>
+
+    <Button
+        android:id="@+id/getbgmpos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取bgm位置"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/startbgm"
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
-        android:layout_width="408dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <TextView
             android:id="@+id/posshow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="top"
             android:text=""
             app:layout_constraintEnd_toEndOf="@+id/bgmPosProgress"
             app:layout_constraintStart_toStartOf="@+id/bgmPosProgress"
@@ -72,7 +169,7 @@
         android:id="@+id/resumeBGM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="0dp"
         android:text="恢复BGM"
         app:layout_constraintEnd_toEndOf="@+id/pauseBGM"
         app:layout_constraintHorizontal_bias="0.0"
@@ -80,11 +177,21 @@
         app:layout_constraintTop_toBottomOf="@+id/pauseBGM"></Button>
 
     <Button
+        android:id="@+id/stopbgm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="停止BGM"
+        app:layout_constraintEnd_toStartOf="@+id/resumeBGM"
+        app:layout_constraintTop_toBottomOf="@+id/closestream"></Button>
+
+    <Button
         android:id="@+id/startbgm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:text="开启BGM"
+        android:layout_marginStart="16dp"
+        android:text="播放BGM"
         app:layout_constraintStart_toEndOf="@+id/openstream"
         app:layout_constraintTop_toTopOf="parent"></Button>
 
@@ -92,7 +199,7 @@
         android:id="@+id/pauseBGM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         android:text="暂停BGM"
         app:layout_constraintEnd_toEndOf="@+id/startbgm"
         app:layout_constraintHorizontal_bias="0.0"
@@ -103,25 +210,27 @@
         android:id="@+id/openvoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="开扬声器"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/closemic"></Button>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pauseBGM"
+        app:layout_constraintTop_toBottomOf="@+id/getbgmpos"></Button>
 
     <Button
         android:id="@+id/closevoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:text="关扬声器"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/openvoice"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/openvoice"
         app:layout_constraintTop_toBottomOf="@+id/openvoice"></Button>
 
     <Button
         android:id="@+id/openstream"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="16dp"
         android:text="推流"
         app:layout_constraintStart_toEndOf="@+id/openmic"
         app:layout_constraintTop_toTopOf="parent"></Button>
@@ -130,7 +239,7 @@
         android:id="@+id/closestream"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         android:text="关闭推流"
         app:layout_constraintEnd_toEndOf="@+id/openstream"
         app:layout_constraintHorizontal_bias="0.0"
@@ -141,12 +250,9 @@
         android:id="@+id/leaveroom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="退出房间"
-        app:layout_constraintEnd_toEndOf="@+id/closestream"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/closestream"
-        app:layout_constraintTop_toBottomOf="@+id/closestream"></Button>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/closemic"></Button>
 
     <Button
         android:id="@+id/openmic"
@@ -160,7 +266,6 @@
         android:id="@+id/closemic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:text="关麦"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/openmic"></Button>
@@ -168,13 +273,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="408dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/closevoice">
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintTop_toBottomOf="@+id/resumeaudioeffectall"
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -187,12 +289,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <SeekBar
-            android:progress="100"
             android:id="@+id/bgmVolumeProgress"
             android:layout_width="200dp"
             android:layout_height="36dp"
             android:max="100"
             android:min="1"
+            android:progress="100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -201,8 +303,13 @@
             android:id="@+id/volumeshow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingTop="0dp"
             android:text=""
             app:layout_constraintEnd_toEndOf="@+id/bgmVolumeProgress"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="@+id/bgmVolumeProgress"
             app:layout_constraintTop_toBottomOf="@+id/bgmVolumeProgress" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -215,9 +322,8 @@
         android:padding="10dp"
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+        tools:layout_editor_absoluteX="13dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

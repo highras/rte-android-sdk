@@ -8,8 +8,10 @@
 
 
 ### 版本支持
-- RTM和IM功能最低支持Android版本为5.0(api-21) 带有RTC(实时音视频)功能最低支持Android版本为7.0(api-24)
-  用户可通过gradle.properties文件中的 needRTC 变量来控制是否需要引入RTC功能  包文件在aoo/libs/下
+  
+- RTM和IM功能最低支持Android版本为5.0(api-21) app/libs/LiveDataRTE-sdk.aar
+  带有RTC实时音频功能最低支持Android版本为5.0(api-21) app/libs/LiveDataRTE-audio-sdk.aar
+  带有RTC实时音视)功能最低支持Android版本为7.0(api-24) app/libs/LiveDataRTE-full-sdk.aar
 ### 依赖集成
 
 
@@ -23,8 +25,10 @@
   RTC需要的权限：
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+  RTC视频
+    <uses-permission android:name="android.permission.CAMERA" />
+
   ~~~
   
   
@@ -41,7 +45,7 @@
   - 各项服务配置和增值服务可以在后台配置，请登陆管理后台预览详细的配置参数
   - room和group的区别 group在服务端会持久化 room是非持久化(用户下线或者RTM链接断开会自动离开room)
   - room默认不支持多房间（当用户进入第二个房间会自动退出第一个房间） 用户可以在控制台开启支持多房间配置
-  - sdk支持自动重连 不要手动管理链接
+  - sdk支持自动重连 不需要手动管理链接
 
   RTC说明:
   - 开启RTC功能需要先登陆成功
@@ -87,6 +91,7 @@
       }
       ldEngine.setRTMPushProcessor(irtmPushProcessor);
     
+    设置日志收集类
     ldEngine.setErrorRecoder(new TestErrorRecorder())
     
     登录：

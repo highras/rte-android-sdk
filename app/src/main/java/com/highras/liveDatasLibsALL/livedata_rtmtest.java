@@ -99,7 +99,7 @@ public class livedata_rtmtest extends AppCompatActivity implements View.OnClickL
                 ldEngine.RTM.sendChatMessage(toUid,  ConversationType.P2P, sendMsg, userattrs, new ISendMsgCallback() {
                     @Override
                     public void onSuccess(long messageTime, long messageId, String msg) {
-                        outputMsg("sendChatMessage P2P");
+                        outputMsg("sendChatMessage P2P msg:" + msg);
                     }
 
                     @Override

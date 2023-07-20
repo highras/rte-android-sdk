@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -40,12 +41,16 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
     TextView posshow;
     TextView volumeshow;
     TextView logView;
+    boolean micstatus = false;
+    boolean outputstatus = false;
+    boolean pushflag = true;
 
     void addLog(final String msg) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 synchronized (logView) {
+                    mylog.log(msg);
                     String realmsg = "[" + (new SimpleDateFormat("MM-dd HH:mm:ss.SSS").format(new Date())) + "] " + msg + "\n";
                     logView.append(realmsg);
                 }
@@ -84,8 +89,25 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.startbgm).setOnClickListener(this);
         findViewById(R.id.pauseBGM).setOnClickListener(this);
         findViewById(R.id.resumeBGM).setOnClickListener(this);
+        findViewById(R.id.stopbgm).setOnClickListener(this);
+        findViewById(R.id.getbgmpos).setOnClickListener(this);
+
         findViewById(R.id.audioeffect).setOnClickListener(this);
+        findViewById(R.id.audioeffect1).setOnClickListener(this);
+        findViewById(R.id.audioeffectpause).setOnClickListener(this);
+        findViewById(R.id.audioeffectpause1).setOnClickListener(this);
+        findViewById(R.id.resumeaudioeffect).setOnClickListener(this);
+        findViewById(R.id.resumeaudioeffect1).setOnClickListener(this);
+        findViewById(R.id.stopaudioeffect).setOnClickListener(this);
+        findViewById(R.id.stopaudioeffect1).setOnClickListener(this);
+        findViewById(R.id.pauseaudioeffectall).setOnClickListener(this);
+        findViewById(R.id.resumeaudioeffectall).setOnClickListener(this);
+        findViewById(R.id.stopaudioeffectall).setOnClickListener(this);
+
         logView = findViewById(R.id.logview);
+        logView.setTextSize(14);
+        logView.setTextColor(this.getResources().getColor(R.color.white));
+        logView.setMovementMethod(ScrollingMovementMethod.getInstance());
         bgmVolumeProgress = findViewById(R.id.bgmVolumeProgress);
         bgmPosProgress = findViewById(R.id.bgmPosProgress);
 
@@ -105,7 +127,8 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 volumeshow.setText("volume:"+volumebgm);
-                ldEngine.VoiceRoomClient.setBGNVolume(volumebgm);
+                ldEngine.VoiceRoomClient.setBGMVolume(volumebgm);
+//                ldEngine.VoiceRoomClient.setAudioEffectVolume(volumebgm);
             }
         });
 
@@ -125,14 +148,13 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
             public void onStopTrackingTouch(SeekBar seekBar) {
                 posshow.setText("pos:"+posbgm);
                 ldEngine.VoiceRoomClient.setBGMPos(posbgm);
-                mylog.log("设置BGM位置:" + posbgm);
             }
         });
         ldEngine.setErrorRecoder(new jjjj());
         ldEngine.VoiceRoomClient.enterRTCVoiceRoom(activityRoom, new LDInterface.ICallback<List<Long>>() {
             @Override
             public void onSuccess(List<Long> longs) {
-                ldEngine.VoiceRoomClient.pushStream();
+                outputstatus = true;
             }
 
             @Override
@@ -141,42 +163,57 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
                     ldEngine.VoiceRoomClient.createRTCRoom(activityRoom, new LDInterface.IEmptyCallback() {
                         @Override
                         public void onSuccess() {
-
+                            outputstatus = true;
                         }
 
                         @Override
                         public void onError(LiveDataStruct.LDAnswer answer) {
-                            mylog.log( "onResult: 创建房间" + activityRoom + " 失败:" + answer.getErrInfo() );
+                            addLog( "onResult: 创建房间" + activityRoom + " 失败:" + answer.getErrInfo() );
                             return;
 
                         }
                     });
                 }else{
-                    mylog.log( "onResult: 进入房间" + activityRoom + " 失败:" + answer.getErrInfo() );
+                    addLog( "onResult: 进入房间" + activityRoom + " 失败:" + answer.getErrInfo() );
                     return;
                 }
             }
         });
-        ldEngine.VoiceRoomClient.setEventHandle(new RTCEventHandle() {
+        ldEngine.VoiceRoomClient.setRTCEventHandle(new RTCEventHandle() {
             @Override
             public void onParseMusicError(String err) {
                 mylog.log("startBGM error " + err);
             }
 
+
             @Override
-            public void onBGMStart(int duartionTime) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        bgmPosProgress.setMax(duartionTime);
-                    }
-                });
-                mylog.log("onBGMStart duartionTime " + duartionTime);
+            public void myspeakVolume(int volume) {
+                mylog.log("自己的音量 " + volume);
+            }
+
+            @Override
+            public void onBGMStart() {
+                addLog("bgm start");
             }
 
             @Override
             public void onBGMEnd() {
-                mylog.log("onBGMEnd ");
+               addLog("onBGMEnd ");
+            }
+
+            @Override
+            public void onParseAudioEffectError(int id, String err) {
+                addLog("ParseAudioEffectError id  "+ id + " " + err);
+            }
+
+            @Override
+            public void onAudioEffectStart(int id, int duartionTime) {
+                addLog("onBAudioEffectStart id  "+ id + " time:" + duartionTime);
+            }
+
+            @Override
+            public void onAudioEffectEnd(int id) {
+                addLog("onAudioEffectEnd id  "+ id);
             }
 
             @Override
@@ -201,33 +238,47 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
             if (successful) {
                 if (activityRoom <= 0 || ldEngine == null)
                     return;
-                mylog.log("RTM重连成功");
+                addLog("RTM重连成功");
                 ldEngine.VoiceRoomClient.enterRTCVoiceRoom(activityRoom, new LDInterface.ICallback<List<Long>>() {
                     @Override
                     public void onSuccess(List<Long> longs) {
-                        mylog.log("重新进入语聊房房间成功");
+                        addLog("重新进入语聊房房间成功");
+                        if (micstatus)
+                            ldEngine.VoiceRoomClient.openMic();
+                        else
+                            ldEngine.VoiceRoomClient.closeMic();
+
+                        if (outputstatus)
+                            ldEngine.VoiceRoomClient.openAudioOutput();
+                        else
+                            ldEngine.VoiceRoomClient.closeAudioOutput();
+
+                        if (pushflag)
+                            ldEngine.VoiceRoomClient.pushStream();
+                        else
+                            ldEngine.VoiceRoomClient.closeStream();
                     }
 
                     @Override
                     public void onError(LiveDataStruct.LDAnswer answer) {
-                        mylog.log("重新进入语聊房房间失败");
+                        addLog("重新进入语聊房房间失败");
 
                     }
                 });
             } else {
-                mylog.log("重新失败:" + answer.getErrInfo());
+                addLog("RTM重连失败:" + answer.getErrInfo());
             }
 
         }
 
         @Override
         public void rtmConnectClose(long uid) {
-            mylog.log("客户端断开连接");
+            addLog("客户端断开连接");
         }
 
         @Override
         public void kickout() {
-            mylog.log("被服务器踢下线");
+            addLog("被服务器踢下线");
         }
     };
 
@@ -238,30 +289,68 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
         
         if (id == R.id.openmic){
             ldEngine.VoiceRoomClient.openMic();
+            micstatus = true;
             
         }else if (id == R.id.closemic){
             ldEngine.VoiceRoomClient.closeMic();
+            micstatus = false;
         }else if (id == R.id.openvoice){
             ldEngine.VoiceRoomClient.openAudioOutput();
+            outputstatus = true;
 
         }else if (id == R.id.closevoice){
             ldEngine.VoiceRoomClient.closeAudioOutput();
+            outputstatus = false;
 
         }else if (id == R.id.openstream){
             ldEngine.VoiceRoomClient.pushStream();
+            pushflag = true;
 
         }else if (id == R.id.closestream){
             ldEngine.VoiceRoomClient.closeStream();
-
+            pushflag = false;
         }else if (id == R.id.leaveroom){
             finish();
         }
         else if (id == R.id.startbgm){
-            ldEngine.VoiceRoomClient.startAudioMixing("/sdcard/Download/test.mp3",0, true);
+            int time = ldEngine.VoiceRoomClient.startAudioMixing("/sdcard/Download/test.mp3",0, 1);
+            if (time >0){
+                bgmPosProgress.setMax(time);
+            }
         }
         else if (id == R.id.audioeffect){
-            ldEngine.VoiceRoomClient.startAudioEffect("/sdcard/Download/zhangsheng.mp3");
+            ldEngine.VoiceRoomClient.startAudioEffect(1,"/sdcard/Download/zhangsheng.mp3",-1);
 //            ldEngine.VoiceRoomClient.startAudioEffect("/sdcard/Download/zhaoizlong.mp3");
+        }
+        else if (id == R.id.audioeffect1){
+            ldEngine.VoiceRoomClient.startAudioEffect(2,"/sdcard/Download/zhaozilong.mp3",1);
+        }
+        else if (id == R.id.audioeffectpause){
+            ldEngine.VoiceRoomClient.pauseAudioEffect(1);
+        }
+        else if (id == R.id.audioeffectpause1){
+            ldEngine.VoiceRoomClient.pauseAudioEffect(2);
+        }
+        else if (id == R.id.resumeaudioeffect){
+            ldEngine.VoiceRoomClient.resumeAudioEffect(1);
+        }
+        else if (id == R.id.resumeaudioeffect1){
+            ldEngine.VoiceRoomClient.resumeAudioEffect(2);
+        }
+        else if (id == R.id.stopaudioeffect){
+            ldEngine.VoiceRoomClient.stopAudioEffect(1);
+        }
+        else if (id == R.id.stopaudioeffect1){
+            ldEngine.VoiceRoomClient.stopAudioEffect(2);
+        }
+        else if (id == R.id.pauseaudioeffectall){
+            ldEngine.VoiceRoomClient.pauseAudioEffect(0);
+        }
+        else if (id == R.id.resumeaudioeffectall){
+            ldEngine.VoiceRoomClient.resumeAudioEffect(0);
+        }
+        else if (id == R.id.stopaudioeffectall){
+            ldEngine.VoiceRoomClient.stopAudioEffect(0);
         }
         else if (id == R.id.pauseBGM){
             ldEngine.VoiceRoomClient.pauseBGM();
@@ -269,6 +358,14 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
         else if (id == R.id.resumeBGM){
             ldEngine.VoiceRoomClient.resumeBGM();
         }
+        else if (id == R.id.stopbgm){
+            ldEngine.VoiceRoomClient.stopBGM();
+        }
+        else if (id == R.id.getbgmpos){
+            int time = ldEngine.VoiceRoomClient.getBGMCurrPos();
+            addLog(time+"");
+        }
+
     /*    else if (id == R.id.movepos){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             EditText editText = new EditText(this);

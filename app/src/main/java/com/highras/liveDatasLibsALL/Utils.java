@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.LiveDataRTE.IBasePushProcessor;
 import com.LiveDataRTE.LDEngine;
 import com.LiveDataRTE.LDInterface.*;
+import com.LiveDataRTE.LiveDataConfig;
 import com.LiveDataRTE.LiveDataStruct.*;
 import com.LiveDataRTE.RTCLib.RTCStruct.*;
 import com.LiveDataRTE.RTMLib.RTMErrorCode;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -174,6 +176,10 @@ public enum Utils {
     public LDEngine ldEngine;
 
 
+    private static String getType(Object a) {
+        return a.getClass().toString();
+    }
+
     public void login(Activity activity, IEmptyCallback callback) {
         ProjectInfo info = testAddress.get(address);
         rtmEndpoint = info.host +  ":" + rtmPort;
@@ -181,7 +187,20 @@ public enum Utils {
             ldEngine.closeEngine();
         }
 
-        ldEngine = LDEngine.CreateEngine(rtmEndpoint, info.pid, currentUserid, new IBasePushProcessor() {}, activity);
+        if (activity instanceof Activity){
+            mylog.log("对的");
+        }
+        String pid = "11000001";
+        String uid = "1234";
+        LiveDataConfig liveDataConfig = new LiveDataConfig();
+        liveDataConfig.keepRTCBackGround = true;
+        mylog.log(getType(info.pid));
+        mylog.log(getType(currentUserid));
+        mylog.log(getType(rtmEndpoint));
+        mylog.log(getType(activity));
+        mylog.log(getType(liveDataConfig));
+            ldEngine = LDEngine.CreateEngine(rtmEndpoint, info.pid, currentUserid, new IBasePushProcessor() {}, activity, liveDataConfig);
+//            ldEngine = LDEngine.CreateEngine(rtmEndpoint, info.pid, currentUserid, new IBasePushProcessor() {}, null, liveDataConfig);
 
 
         new Thread(new Runnable() {

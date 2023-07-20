@@ -1,5 +1,6 @@
 package com.highras.liveDatasLibsALL;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 
 import android.content.Context;
