@@ -49,7 +49,11 @@
   - 需要订阅才能正常接收对方视频流
   - 链接断开，进入的实时音视频房间会自动退出，需要在重连完成后再次进入房间 订阅的视频流需要重新订阅
   - 如果需要后台保持功能 请在初始化LDEngine 传入LiveDataConfig 将keepRTCBackGround置位true
+- 如需代码混淆 请在proguard-rules.pro 中添加
+    ##### -keep class com.LiveDataRTE.**{*;}
+    -keep class org.msgpack.core.**{*;}
 
+  
 
 - 用户可以重写日志类 收集和获取sdk内部的错误信息(强烈建议重载日志类) 例如
     ~~~
