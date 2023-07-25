@@ -1,225 +1,225 @@
 ~~~ c++
-       /**
-        *管理员权限操作
-        * @param roomId 房间id
-        * @param uids
-        * @param command
-        * 0 赋予管理员权
-        * 1 剥夺管理员权限
-        * 2 禁止发送音频数据
-        * 3 允许发送音频数据
-        * 4 禁止发送视频数据
-        * 5 允许发送视频数据
-        * 6 关闭他人麦克风
-        * 7 关闭他人摄像头
-        * @return
-        */
-       public void adminCommand (long roomId, HashSet<Long> uids,  int command, IRTMEmptyCallback callback);
+      /**
+     *管理员权限操作
+     * @param roomId 房间id
+     * @param uids
+     * @param command
+     * 0 赋予管理员权
+     * 1 剥夺管理员权限
+     * 2 禁止发送音频数据
+     * 3 允许发送音频数据
+     * 4 禁止发送视频数据
+     * 5 允许发送视频数据
+     * 6 关闭他人麦克风
+     * 7 关闭他人摄像头
+     */
+    public void adminCommand (long roomId, HashSet<Long> uids, int command, IEmptyCallback callback)
+    
 
-   
-       /**
-        * 开启摄像头
-        */
-       public RTMAnswer openCamera();
+    /**
+     * 开启摄像头
+     */
+    public LDAnswer openCamera()
+    
+    
 
-   
-       /**
-        * 关闭摄像头
-        */
-       public void closeCamera();
+    /**
+     * 关闭摄像头
+     */
+    public void closeCamera()
+    
+    
 
-   
-       /**
-        * 摄像头切换
-        * @param front true-使用前置  false-使用后置
-        */
-       public void switchCamera(boolean front);
+    /**
+     * 摄像头切换
+     * @param front true-使用前置  false-使用后置
+     */
+    public void switchCamera(boolean front)
+    
+    
 
-   
-       /**
-        * 打开麦克风(音频模式进入房间初始默认关闭  视频模式进入房间默认开启)
-        */
-       public void openMic();
+    /**
+     * 打开麦克风(音频模式进入房间初始默认关闭  视频模式进入房间默认开启)
+     */
+    public void openMic()
+    
 
-   
-       /**
-        * 关闭麦克风
-        */
-       public void closeMic();
+    /**
+     * 关闭麦克风
+     */
+    public void closeMic()
+    
 
-   
-   
-       /**
-        * 设置麦克风增益等级(声音自动增益 取值 范围0-10)
-        */
-       public void setMicphoneLevel(int level);
 
-   
-       /**
-        * 取消订阅视频流
-        * @param roomId 房间id
-        * @param uids 取消订阅的成员列表
-        * @return
-        */
-       public void unsubscribeVideo(long roomId, HashSet<Long> uids);
+    /**
+     * 打开音频输出
+     */
+    public void openAudioOutput()
+    
 
-   
+    /**
+     * 关闭音频输出(静音)
+     */
+    public void closeAudioOutput()
+
+
+    /**
+     * 设置麦克风增益等级(声音自动增益 取值 范围0-10)
+     */
+    public void setMicphoneLevel(int level)
+    
+
+    /**
+     * 取消订阅视频流
+     * @param roomId 房间id
+     * @param uids 取消订阅的成员列表
+     */
+    public void unsubscribeVideo(long roomId, HashSet<Long> uids, IEmptyCallback callback)
+    
+
     /**
      * 创建RTC房间
      * @roomId 房间id
-     * @roomType RTC房间类型(视频房间摄像头默认关闭 麦克风默认开启)
-     * @param callback 回调
+     * @roomType 1-voice 2-video 3-实时翻译语音房间(视频房间摄像头默认关闭 麦克风默认开启)
+     * @lang 语言(当创建实时翻译房间 必传)
      */
-    public void createRTCRoom( long roomId, RTCRoomType roomType,  IRTMCallback<RoomInfo> callback) 
+    public void createRTCRoom(long roomId, RTCStruct.RTCRoomType roomType, String lang, IEmptyCallback callback)
 
-   
-   /**
-     * 创建实时翻译RTC房间
-     * @roomId 房间id
-     * @param language 自己的语言
-     * @param callback 回调
-     */
-    public void createTranslateRTCRoom( long roomId,String language,  IRTMCallback<RoomInfo> callback) 
-    
-    
-   /**
+
+    /**
      * 进入RTC房间
-     * @param callback 回调
      * @param roomId   房间id
      * @param lang 自己的语言(当为实时语音翻译房间必传)
      */
-    public void enterRTCRoom(long roomId, String lang,  IRTMCallback<RoomInfo> callback) 
+    public void enterRTCRoom(long roomId, String lang,  ICallback<RTCStruct.RTCRoomInfo> callback)
+    
 
 
-       /**
-        * 订阅视频流
-        * @param roomId 房间id
-        * @param userViews  key-订阅的用户id value-显示用户的surfaceview()
-        */
-       public RTMAnswer subscribeVideos(long roomId, HashMap<Long, SurfaceView> userViews);
+    /**
+     * 订阅视频流
+     * @param roomId 房间id
+     * @param userViews  key-订阅的用户id value-显示用户的surfaceview(需要view创建完成可用)
+     */
+    public void subscribeVideos(long roomId, HashMap<Long, SurfaceView> userViews, IEmptyCallback callback)
+    
+    
 
-       
-       /**
-        * 邀请用户加入RTC房间(非强制，需要对端确认)(发送成功仅代表收到该请求，至于用户最终是否进入房间结果未知)
-        * @param callback 回调
-        * @param roomId   房间id
-        * @param uids     需要邀请的用户列表
-        */
-       public void inviteUserIntoRTCRoom(long roomId, HashSet<Long> uids, IRTMEmptyCallback callback);
+    /**
+     * 邀请用户加入RTC房间(需要对端确认)
+     * @param roomId   房间id
+     * @param uids     需要邀请的用户列表
+     */
+    public void inviteUserIntoRTCRoom(long roomId, HashSet<Long> uids, IEmptyCallback callback)
+    
+    
 
-   
-       /**
-        * 设置目前活跃的房间(仅对语音房间有效)
-        * @param roomId
-        */
-       public RTMAnswer setActivityRoom(long roomId);
+    /**
+     * 设置目前活跃的房间(仅对语音房间有效)
+     * @param roomId
+     */
+    public LDAnswer setActivityRoom(long roomId)
+    
+    
 
-   
-       /**
-        * 切换扬声器听筒(耳机状态下不操作)(默认扬声器)
-        * @param usespeaker true-使用扬声器 false-使用听筒
-        */
-       public void switchOutput(boolean usespeaker);
+    /**
+     * 切换扬声器听筒(耳机状态下不操作)(默认扬声器)
+     * @param usespeaker true-使用扬声器 false-使用听筒
+     */
+    public void switchAudioOutput(boolean usespeaker)
+    
+    
 
-   
-       /**
-        * 设置语音开关(开启语音功能或者关闭语音功能(备注:默认开启 如果为语音功能关闭则麦克风自动关闭)
-        * @param status
-        */
-       public RTMAnswer setVoiceStat(boolean status);
+    /**离开RTC房间
+     * @param roomId   房间id
+     */
+    public void leaveRTCRoom(long roomId, IEmptyCallback callback)
+    
+    
 
-   
-       /**离开RTC房间
-        * @param roomId   房间id
-        */
-       public void leaveRTCRoom(long roomId, IRTMEmptyCallback callback);
+    /**
+     * 屏蔽房间某些人的语音
+     * @param roomId   房间id
+     * @param uids     屏蔽语音的用户列表
+     */
+    public void blockUserInVoiceRoom(long roomId, HashSet<Long> uids,IEmptyCallback callback)
+    
+    
 
-   
-       /**
-        * 屏蔽房间某些人的语音
-        * @param callback 回调
-        * @param roomId   房间id
-        * @param uids     屏蔽语音的用户列表
-        */
-       public void blockUserInVoiceRoom(long roomId, HashSet<Long> uids, IRTMEmptyCallback callback);
-
-       /**
-        * 解除屏蔽房间某些人的语音
-        * @param callback 回调
-        * @param roomId   房间id
-        * @param uids     解除屏蔽语音的用户列表
-        */
-       public void unblockUserInVoiceRoom(long roomId, HashSet<Long> uids, IRTMEmptyCallback callback);
-
-   
-   
-       /**
-        * 获取语RTC房间成员列表
-        * @param callback 回调<RoomInfo>
-        */
-       public void getRTCRoomMembers(long roomId,  IRTMCallback<RoomInfo> callback);
+    /**
+     * 解除屏蔽房间某些人的语音
+     * @param roomId   房间id
+     * @param uids     解除屏蔽语音的用户列表
+     */
+    public void unblockUserInVoiceRoom(long roomId, HashSet<Long> uids, IEmptyCallback callback)
+    
 
 
-       /**
-        * 获取RTC房间成员个数
-        * @param callback 回调
-        */
-       public void getRTCRoomMemberCount(long roomId,  IRTMCallback<Integer> callback);
+    /**
+     * 获取语RTC房间成员列表
+     */
+    public void getRTCRoomMembers(long roomId,  ICallback<RTCStruct.RTCRoomInfo> callback) 
+    
 
-   
-       /**
-        * 切换视频质量
-        * @level 视频质量详见RTMStruct.CaptureLevle
-        * @return
-        */
-       public RTMAnswer switchVideoQuality(int level);
+    /**
+     * 获取RTC房间成员个数
+     */
+    public void getRTCRoomMemberCount(long roomId,  ICallback<Integer> callback)
+    
 
-   
-   
-       /**
-        * 设置预览view(需要传入的view 真正建立完成)
-        * @return
-        */
-       public void setPreview(SurfaceView view);
+    /**
+     * 切换视频质量
+     * @level 视频质量详见RTMStruct.CaptureLevle
+     */
+    public LDAnswer switchVideoQuality(int level)
+    
 
 
-  /**
-     *发起p2p音视频请求(对方是否回应通过 pushP2PRTCEvent回调接口返回)
+    /**
+     * 设置预览view(需要传入的view 真正建立完成)
+     */
+    public void setPreview(SurfaceView view)
+
+
+    /****************P2P*****************/
+    /**
+     *发起p2p音视频请求(对方是否回应通过 pushP2PRTCEvent接口回调)
      * @param type 通话类型
-     * @SurfaceView view(如果为实时频频 自己预览的view 需要view创建完成并可用)
+     * @SurfaceView view(如果为视频 自己预览的view 需要view创建完成并可用)
      * @param toUid 对方id
      */
-    public void requestP2PRTC(P2PRTCType type , long toUid, SurfaceView view, IRTMEmptyCallback callback)
-
+    public void requestP2PRTC(RTCStruct.P2PRTCType type , long toUid, SurfaceView view, IEmptyCallback callback)
+    
+    
 
     /**
      * 取消p2p RTC请求
-     * @param callback
      */
-    public void cancelP2PRTC(IRTMEmptyCallback callback)
-
-
+    public void cancelP2PRTC(IEmptyCallback callback)
+    
 
     /**
      * 关闭p2p 会话
-     * @param callback
      */
-    public void closeP2PRTC(IRTMEmptyCallback callback)
-
+    public void closeP2PRTC(IEmptyCallback callback)
+    
 
     /**
      * 接受p2p 会话
-     * @param callback
-     * @param preview 自己预览的view(需要view创建完成并可用)
-     * @param bindview 对方的view(需要view创建完成并可用)
+     * @param preview 自己预览的view(仅视频)
+     * @param bindview 对方的view(仅视频)
      */
-    public void acceptP2PRTC(SurfaceView preview, SurfaceView bindview, IRTMEmptyCallback callback)
-
+    public void acceptP2PRTC(SurfaceView preview, SurfaceView bindview, IEmptyCallback callback)
+    
+    
 
     /**
-     * 拒绝p2p 会话
-     * @param callback
+     * 拒绝p2p请求
      */
-    public void refuseP2PRTC(IRTMEmptyCallback callback)
+    public void refuseP2PRTC(IEmptyCallback callback) 
+    
 
+    /**
+     * 设置对方的surfaceview(当原有的surfaceview发生重建的时候)
+     */
+    public void bindDecodeSurface(long uid, SurfaceView view)
 ~~~

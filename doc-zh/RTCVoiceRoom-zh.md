@@ -1,5 +1,5 @@
 ~~~ c++
-    /**
+    **
      * 设置rtc回调事件
      * @param rtcEventHandle
      */
@@ -22,6 +22,7 @@
      * 打开音频输出
      */
     public void openAudioOutput()
+    
     
 
     /**
@@ -48,6 +49,7 @@
      */
     public void pushStream()
     
+    
 
     /**
      * 关闭推流
@@ -63,6 +65,7 @@
      * @return
      */
     public  int startAudioMixing(String filePath, int pos, int loop)
+    
     
 
     /**
@@ -93,7 +96,6 @@
     public  void stopBGM()
 
 
-
     /**
      * 设置bgm位置(秒)
      */
@@ -104,7 +106,6 @@
      * 获取bgm播放(秒)
      */
     public  int getBGMCurrPos()
-    
 
 
     /**
@@ -119,8 +120,7 @@
      * @param id 音效id （0位全部音效）
      */
     public  void resumeAudioEffect(int id)
-    
-    
+
 
     /**
      * 停止音效播放
@@ -132,14 +132,11 @@
     /**
      * 创建语聊房
      * @roomId 房间id
-     * @param callback
      */
     public void createRTCRoom(long roomId, IEmptyCallback callback)
-    
 
     /**
      * 进入语聊房
-     * @param callback 回调
      * @param roomId   房间id
      */
     public void enterRTCVoiceRoom(long roomId, ICallback<List<Long>> callback)
@@ -154,13 +151,13 @@
 
     /**
      * 获取语语聊房成员列表
-     * @param callback 回调<RoomInfo>
      */
-    public void getRTCRoomMembers(long roomId,  ICallback<List<Long>> callback) 
+    public void getRTCRoomMembers(long roomId,  ICallback<List<Long>> callback)
+    
+    
 
     /**
      * 获取语聊房成员个数
-     * @param callback 回调
      */
-    public void getRTCRoomMemberCount(long roomId,  ICallback<Integer> callback) 
+    public void getRTCRoomMemberCount(long roomId,  ICallback<Integer> callback)
 ~~~

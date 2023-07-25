@@ -1,5 +1,4 @@
 ~~~c++
-    //serverpush 消息结构
     public static class RTMMessage
     {
         public long fromUid;    //发送者id 若等于自己uid 说明发送者是自己
