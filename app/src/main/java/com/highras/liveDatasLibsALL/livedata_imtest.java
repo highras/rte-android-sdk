@@ -55,6 +55,7 @@ public class livedata_imtest extends AppCompatActivity implements View.OnClickLi
     long toUid = 999;
     long groupId = 200L;
     long roomId = 200L;
+
     List<Long> groupids = new ArrayList<Long>(){{add(groupId);}};
     List<Long> roomids = new ArrayList<Long>(){{add(roomId);}};
     String userattrs = "我的消息";
@@ -63,6 +64,9 @@ public class livedata_imtest extends AppCompatActivity implements View.OnClickLi
     ArrayList<Long> testUids = new ArrayList<Long>(){{
         add(toUid);
     }};
+
+    ArrayList<Long> atTestUids = null;
+
 
     void outputMsg(String method){
         outputMsg(method, null);
@@ -552,7 +556,7 @@ public class livedata_imtest extends AppCompatActivity implements View.OnClickLi
                 if (groupPosition == 0){
                     switch (childPosition){
                         case 0:
-                            ldEngine.IM.sendChatMessage(toUid, ConversationType.P2P, sendMsg, userattrs, new ISendMsgCallback() {
+                            ldEngine.IM.sendChatMessage(toUid, ConversationType.P2P, sendMsg, userattrs, atTestUids, new ISendMsgCallback() {
                                 @Override
                                 public void onSuccess(long messageTime, long messageId, String msg) {
                                     outputMsg("sendChatMessage P2P");
@@ -623,7 +627,7 @@ public class livedata_imtest extends AppCompatActivity implements View.OnClickLi
                 else if (groupPosition == 1){
                     switch (childPosition){
                         case 0:
-                            ldEngine.IM.sendChatMessage(groupId, ConversationType.GROUP,sendMsg, userattrs,  new ISendMsgCallback() {
+                            ldEngine.IM.sendChatMessage(groupId, ConversationType.GROUP,sendMsg, userattrs,  atTestUids,new ISendMsgCallback() {
                                 @Override
                                 public void onSuccess(long messageTime, long messageId,String msg) {
                                     outputMsg("sendChatMessage Group");
@@ -1341,7 +1345,7 @@ public class livedata_imtest extends AppCompatActivity implements View.OnClickLi
                 else if (groupPosition == 5){
                     switch (childPosition){
                         case 0:
-                            ldEngine.IM.sendChatMessage(roomId, ConversationType.ROOM,sendMsg, userattrs,  new ISendMsgCallback() {
+                            ldEngine.IM.sendChatMessage(roomId, ConversationType.ROOM,sendMsg, userattrs, atTestUids, new ISendMsgCallback() {
                                 @Override
                                 public void onSuccess(long messageTime, long messageId,String msg) {
                                     outputMsg("sendChatMessage Room");
