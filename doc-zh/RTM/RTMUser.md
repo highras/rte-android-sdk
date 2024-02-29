@@ -59,15 +59,17 @@
      * 添加android推送设备token信息(Google FCM)
      * @param  callback
      * @param deviceToken   设备推送token
+     * @param tag 一个rtm项目对应多个推送项目时，所使用的推送项目的 tag
      */
-    public void addDevice(String deviceToken,  IEmptyCallback callback)
+    public void addDevice(String deviceToken,  String tag, IEmptyCallback callback) 
     
 
     /**
      * 删除设备
      * @param deviceToken   设备推送token
+     * @param tag 一个rtm项目对应多个推送项目时，所使用的推送项目的 tag
      */
-    public void removeDevice( String deviceToken,  IEmptyCallback callback)
+    public void removeDevice( String deviceToken,  String tag, IEmptyCallback callback)
 
 
 
