@@ -6,6 +6,8 @@
 
 
 ### 依赖集成
+  - sdk需要依赖fpnn基础通讯库 请添加依赖implementation 'com.github.highras:fpnn:2.0.6'
+
 - RTM和IM功能最低支持Android版本为5.0(api-21)         app/libs/LiveDataRTE-sdk.aar
 - 带有RTC实时音频功能最低支持Android版本为5.0(api-21)  app/libs/LiveDataRTE-audio-sdk.aar
 - 带有RTC实时音视)功能最低支持Android版本为7.0(api-24) app/libs/LiveDataRTE-full-sdk.aar
@@ -52,8 +54,8 @@
 - 如需代码混淆 请在proguard-rules.pro 中添加
     ##### -keep class com.LiveDataRTE.**{*;}
     -keep class org.msgpack.core.**{*;}
-
-  
+    如使用加密功能请添加
+    -keep class org.spongycastle.**{*;}
 
 - 用户可以重写日志类 收集和获取sdk内部的错误信息(强烈建议重载日志类) 例如
     ~~~

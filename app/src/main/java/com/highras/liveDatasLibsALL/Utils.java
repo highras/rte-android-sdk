@@ -83,10 +83,7 @@ public enum Utils {
     public String rtmEndpoint;
 
     final HashMap<String, ProjectInfo> testAddress = new HashMap(){{
-        put("test", new ProjectInfo(11000001,"rtm-intl-frontgate-test.ilivedata.com","cXdlcnR5"));
-//        put("test", new ProjectInfo(11000001,"rtm-intl-frontgate-test.ilivedata.com","cXdlcnR5"));
         put("nx",new ProjectInfo(80000071,"rtm-nx-front.ilivedata.com","cXdlcnR5"));
-        put("intl",new ProjectInfo(80000087,"rtm-intl-frontgate.ilivedata.com","OTRjMDRhYTMtOWExMi00MmFhLTg2NGQtMWU4OTI4YTg2ZGVk"));
         }
     };
 

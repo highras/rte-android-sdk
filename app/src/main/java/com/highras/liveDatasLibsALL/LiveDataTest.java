@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 
-import com.LiveDataRTE.VoiceRoomLib.AudioCodec;
 import com.livedata.rtc.RTCEngine;
 
 import org.angmarch.views.NiceSpinner;
@@ -22,9 +21,7 @@ public class LiveDataTest extends AppCompatActivity  implements View.OnClickList
     NiceSpinner checkbutton;
     int REQUEST_CODE_CONTACT = 101;
     final LinkedList<Utils.CItem1> testtypevalue = new LinkedList<Utils.CItem1>(){{
-        add(new Utils.CItem1("内网测试","test"));
         add(new Utils.CItem1("宁夏测试","nx"));
-        add(new Utils.CItem1("国际测试","intl"));
     }
     };
     @Override

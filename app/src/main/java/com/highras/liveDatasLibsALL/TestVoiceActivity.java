@@ -683,10 +683,5 @@ public class TestVoiceActivity extends AppCompatActivity {
                 voiceMemberAdapter.notifyDataSetChanged();
             });
         }
-
-        @Override
-        public void pushVoiceTranslate(String text, String slang, long uid) {
-            IRTCPushProcessor.super.pushVoiceTranslate(text, slang, uid);
-        }
     };
 }
