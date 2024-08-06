@@ -622,7 +622,7 @@ public class livedata_rtmtest extends AppCompatActivity implements View.OnClickL
         }
         switch (childPosition){
             case 0:
-                ldEngine.RTM.addDevice("123456789", "tag",new IEmptyCallback() {
+                ldEngine.RTM.addDevice("123456789","tag",new IEmptyCallback() {
                     @Override
                     public void onSuccess() {
                         outputMsg("addDevice");
@@ -635,7 +635,7 @@ public class livedata_rtmtest extends AppCompatActivity implements View.OnClickL
                 });
                 break;
             case 1:
-                ldEngine.RTM.removeDevice("123456789", "tag",new IEmptyCallback() {
+                ldEngine.RTM.removeDevice("123456789","tag",new IEmptyCallback() {
                     @Override
                     public void onSuccess() {
                         outputMsg("removeDevice");

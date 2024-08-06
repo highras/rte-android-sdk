@@ -185,17 +185,12 @@ public enum Utils {
         }
 
         if (activity instanceof Activity){
-            mylog.log("对的");
+//            mylog.log("对的");
         }
         String pid = "11000001";
         String uid = "1234";
         LiveDataConfig liveDataConfig = new LiveDataConfig();
         liveDataConfig.keepRTCBackGround = true;
-        mylog.log(getType(info.pid));
-        mylog.log(getType(currentUserid));
-        mylog.log(getType(rtmEndpoint));
-        mylog.log(getType(activity));
-        mylog.log(getType(liveDataConfig));
             ldEngine = LDEngine.CreateEngine(rtmEndpoint, info.pid, currentUserid, new IBasePushProcessor() {}, activity, liveDataConfig);
 //            ldEngine = LDEngine.CreateEngine(rtmEndpoint, info.pid, currentUserid, new IBasePushProcessor() {}, null, liveDataConfig);
 

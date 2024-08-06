@@ -1276,7 +1276,7 @@ public class livedata_imtest extends AppCompatActivity implements View.OnClickLi
                 else if (groupPosition == 4){
                     switch (childPosition){
                         case 0:
-                            ldEngine.IM.addDevice("123456789", "tag",new IEmptyCallback() {
+                            ldEngine.IM.addDevice("123456789","tag",new IEmptyCallback() {
                                 @Override
                                 public void onSuccess() {
                                     outputMsg("addDevice");
@@ -1289,7 +1289,7 @@ public class livedata_imtest extends AppCompatActivity implements View.OnClickLi
                             });
                             break;
                         case 1:
-                            ldEngine.IM.removeDevice("123456789", "tag",new IEmptyCallback() {
+                            ldEngine.IM.removeDevice("123456789","tag",new IEmptyCallback() {
                                 @Override
                                 public void onSuccess() {
                                     outputMsg("removeDevice");
