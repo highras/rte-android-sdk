@@ -1033,7 +1033,7 @@ public class livedata_rtmtest extends AppCompatActivity implements View.OnClickL
         }
 
         @Override
-        public boolean reloginWillStart(long uid, int reloginCount) {
+        public boolean reloginWillStart(long uid, int reloginCount, LDAnswer answer) {
             addLog("开始重连第"+reloginCount+"次");
             return true;
         }

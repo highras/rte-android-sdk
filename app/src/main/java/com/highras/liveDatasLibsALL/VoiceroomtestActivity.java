@@ -229,7 +229,7 @@ public class VoiceroomtestActivity extends AppCompatActivity implements View.OnC
 
     IBasePushProcessor irtcBaseProcessor = new IBasePushProcessor() {
         @Override
-        public boolean reloginWillStart(long uid, int reloginCount) {
+        public boolean reloginWillStart(long uid, int reloginCount, LiveDataStruct.LDAnswer answer) {
             return true;
         }
 

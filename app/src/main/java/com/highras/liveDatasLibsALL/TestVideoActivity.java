@@ -354,7 +354,7 @@ public class TestVideoActivity extends BaseActivity implements View.OnClickListe
 
     IBasePushProcessor iBasePushProcessor = new IBasePushProcessor() {
         @Override
-        public boolean reloginWillStart(long uid, int reloginCount) {
+        public boolean reloginWillStart(long uid, int reloginCount, LDAnswer answer) {
             addlog( "reloginWillStart: 用户 " + uid + " 开始重连第 " + reloginCount + "次");
             return true;
         }

@@ -19,6 +19,7 @@ import com.LiveDataRTE.LDEngine;
 import com.LiveDataRTE.LDInterface.*;
 import com.LiveDataRTE.LiveDataStruct.*;
 import com.LiveDataRTE.*;
+import com.LiveDataRTE.RTMLib.RTMStruct;
 import com.fpnn.sdk.FunctionalAnswerCallback;
 import com.fpnn.sdk.proto.Answer;
 import com.fpnn.sdk.proto.Quest;
@@ -196,7 +197,7 @@ public class livedata_imtest extends AppCompatActivity implements View.OnClickLi
         }
 
         @Override
-        public boolean reloginWillStart(long uid, int reloginCount) {
+        public boolean reloginWillStart(long uid,int reloginCount,LDAnswer answer) {
             addLog("开始重连第"+reloginCount+"次");
             return true;
         }

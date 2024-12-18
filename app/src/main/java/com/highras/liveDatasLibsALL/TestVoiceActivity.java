@@ -538,7 +538,7 @@ public class TestVoiceActivity extends AppCompatActivity {
 
     IBasePushProcessor irtcBaseProcessor = new IBasePushProcessor() {
         @Override
-        public boolean reloginWillStart(long uid, int reloginCount) {
+        public boolean reloginWillStart(long uid, int reloginCount, LDAnswer answer) {
             return true;
         }
 

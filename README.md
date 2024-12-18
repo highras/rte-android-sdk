@@ -6,12 +6,9 @@
 
 
 ### 依赖集成
-  - sdk需要依赖fpnn基础通讯库 请添加依赖implementation 'com.github.highras:fpnn:2.0.6'
-
-- RTM和IM功能最低支持Android版本为5.0(api-21)         app/libs/LiveDataRTE-sdk.aar
-- 带有RTC实时音频功能最低支持Android版本为5.0(api-21)  app/libs/LiveDataRTE-audio-sdk.aar
-- 带有RTC实时音视)功能最低支持Android版本为7.0(api-24) app/libs/LiveDataRTE-full-sdk.aar
-
+- 最低支持Android版本为5.0
+- RTM和IM功能 implementation 'com.github.highras:rte-android:1.1.3'
+- 带有RTC实时音频功能 implementation 'com.github.highras:rte-android-audio:1.1.3'
 
 ### 使用说明
 - 需要的权限
@@ -24,9 +21,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-  RTC视频
-    <uses-permission android:name="android.permission.CAMERA" />
-
   ~~~
   
   
