@@ -37,6 +37,11 @@
   - room和group的区别 group在服务端会持久化 room是非持久化(用户下线或者RTM链接断开会自动离开room)
   - room默认不支持多房间（当用户进入第二个房间会自动退出第一个房间） 用户可以在控制台开启支持多房间配置
   - sdk支持自动重连 不需要手动管理链接
+  - 关于登录
+     ~~~
+    (登录验证token分为客户端生成和服务端拉取两种方式) 服务端拉取需要接入服务端server-sdk去我们的后端拉取
+    客户端生成token需要在管理控制台自己填入base64的公钥 一般选择HMAC生成方式即可 客户端生成的实例代码见ApiSecurityExample.java中的genHMACToken
+     ~~~
 
   RTC说明:
   - 开启RTC功能需要先登陆成功
@@ -47,7 +52,7 @@
   - 如果需要后台保持功能 请在初始化LDEngine 传入LiveDataConfig 将keepRTCBackGround置位true
 - 如需代码混淆 请在proguard-rules.pro 中添加
     ~~~
-     -keep class com.LiveDataRTE.**{*;}
+    -keep class com.LiveDataRTE.**{*;}
     -keep class org.msgpack.core.**{*;}
     如使用加密功能请添加
     -keep class org.spongycastle.**{*;}

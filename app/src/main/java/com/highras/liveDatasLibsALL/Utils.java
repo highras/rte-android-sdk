@@ -17,6 +17,7 @@ import com.LiveDataRTE.LiveDataConfig;
 import com.LiveDataRTE.LiveDataStruct.*;
 import com.LiveDataRTE.RTCLib.RTCStruct.*;
 import com.LiveDataRTE.RTMLib.RTMErrorCode;
+import com.LiveDataRTE.VoiceRoomLib.RTCEventHandle;
 import com.fpnn.sdk.ErrorRecorder;
 
 import org.json.JSONObject;
@@ -192,6 +193,19 @@ public enum Utils {
         LiveDataConfig liveDataConfig = new LiveDataConfig();
         liveDataConfig.keepRTCBackGround = true;
             ldEngine = LDEngine.CreateEngine(rtmEndpoint, info.pid, currentUserid, new IBasePushProcessor() {}, activity, liveDataConfig);
+        ldEngine.RTC.setRTCEventHandle(new RTCEventHandle() {
+            @Override
+            public void speakVolume(HashMap<Long, Integer> userVolume) {
+                for (long uid:userVolume.keySet()){
+                    mylog.log("speakVolume uid:" + uid + " userVolume:" + userVolume.get(uid));
+                }
+            }
+
+            @Override
+            public void myspeakVolume(int volume) {
+                mylog.log("myspeakVolume " + volume);
+            }
+        });
 //            ldEngine = LDEngine.CreateEngine(rtmEndpoint, info.pid, currentUserid, new IBasePushProcessor() {}, null, liveDataConfig);
 
 
