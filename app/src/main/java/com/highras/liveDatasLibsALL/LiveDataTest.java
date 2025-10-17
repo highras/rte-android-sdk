@@ -30,7 +30,6 @@ public class LiveDataTest extends AppCompatActivity  implements View.OnClickList
         setContentView(R.layout.activity_livedatatest);
         findViewById(R.id.rtctest).setOnClickListener(this);
         findViewById(R.id.rtmtest).setOnClickListener(this);
-        findViewById(R.id.imtest).setOnClickListener(this);
         checkbutton = findViewById(R.id.selecttype);
         checkbutton.attachDataSource(testtypevalue);
         checkbutton.setBackgroundResource(R.drawable.shape_nicespinner);
@@ -54,12 +53,7 @@ public class LiveDataTest extends AppCompatActivity  implements View.OnClickList
     @Override
     public void onClick(View v) {
         Class obj = null;
-        if (v.getId() == R.id.imtest) {
-
-            setAddress();
-            obj = livedata_imtest.class;
-        }
-        else if (v.getId() == R.id.rtmtest){
+        if (v.getId() == R.id.rtmtest){
             setAddress();
             obj = livedata_rtmtest.class;
         }

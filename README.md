@@ -7,8 +7,8 @@
 
 ### 依赖集成
 - 最低支持Android版本为5.0
-- RTM和IM功能 implementation 'com.github.highras:rte-android:1.1.3'
-- 带有RTC实时音频功能 implementation 'com.github.highras:rte-android-audio:1.1.3'
+- RTM功能 LiveDataRTE-sdk.aar
+- 带有RTC实时音频功能 LiveDataRTE-rtc-sdk.aar
 
 ### 使用说明
 - 需要的权限
@@ -27,11 +27,9 @@
 - 说明:
     - LDEngine里分为RTM,IM,RTC,ValueAdd,VoicRoomClient对象
     - RTM为基础的信令传输 
-    - IM在RTM的基础上增加了各种推送和通知功能
     - RTC为实时音视频功能
     - ValueAdd为增值服务(翻译,审核)
     - VoicRoomClient为语聊房场景
-  - RTM和IM功能为互斥关系 IMPushProcessor和IRTMPushProcessor只能设置一个
   - 服务器push消息:请实现自己需要的push系列函数(所有push函数在子线程执行，如需更新ui请自行切回主线程)
   - 各项服务配置和增值服务可以在后台配置，请登陆管理后台预览详细的配置参数
   - room和group的区别 group在服务端会持久化 room是非持久化(用户下线或者RTM链接断开会自动离开room)
@@ -82,13 +80,7 @@
 ### 使用示例
  ~~~
     ldEngine = LDEngine.CreateEngine(rtmEndpoint, pid, userid, new IBasePushProcessor() {}, activity);
-    如果使用IM
-        IIMPushProcessor iimPushProcessor = new IIMPushProcessor() {
-        ....//重写自己需要处理的业务接口
-      }
-      ldEngine.setIMPushProcessor(iimPushProcessor);
       
-      如果使用RTM
       IRTMPushProcessor irtmPushProcessor = new IRTMPushProcessor(){
           ....//重写自己需要处理的业务接口
       }
@@ -99,9 +91,7 @@
     
     登录：
       ldEngine.login(String token)
-    
-      ldEngine.IM.sendChatMessage..../ldEngine.RTM.sendChatMessage....
-      
+          
       RTC功能：
       ldEngine.RTC.setRTCPushProcessor(new IRTCPushProcessor())
       ldEngine.RTC.enterRTCRoom(roomId);
@@ -117,14 +107,6 @@
 - [发送聊天以及消息类接口](doc-zh/RTM/RTMChat.md)
 - [房间/群组/好友接口](doc-zh/RTM/RTMRelationship.md)
 - [用户系统命令接口](doc-zh/RTM/RTMUser.md)
-
-### [IM接口]
-- [服务端push接口](doc-zh/IM/IMPush.md)
-- [发送聊天以及消息类接口](doc-zh/RTM/RTMChat.md)
-- [群组接口](doc-zh/IM/IMGroup.md)
-- [好友接口](doc-zh/IM/IMFriend.md)
-- [房间](doc-zh/IM/IMRoom.md)
-- [用户系统命令接口](doc-zh/IM/IMUser.md)
 
 #### [RTC语聊房接口](doc-zh/RTCVoiceRoom-zh.md)
 #### [RTC接口](doc-zh/RTC-zh.md)

@@ -30,24 +30,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/imtest"
+        android:id="@+id/rtctest"
         android:layout_width="200dp"
         android:layout_height="80dp"
-        android:layout_marginTop="64dp"
-        android:text="IM测试"
+        android:layout_marginTop="80dp"
+        android:text="RTC测试"
         app:layout_constraintEnd_toEndOf="@+id/rtmtest"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/rtmtest"
         app:layout_constraintTop_toBottomOf="@+id/rtmtest" />
-
-    <Button
-        android:id="@+id/rtctest"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="48dp"
-        android:text="RTC测试"
-        app:layout_constraintEnd_toEndOf="@+id/imtest"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imtest"
-        app:layout_constraintTop_toBottomOf="@+id/imtest" />
 </androidx.constraintlayout.widget.ConstraintLayout>
