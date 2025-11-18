@@ -39,11 +39,8 @@
 
 
 #### 使用
-        RTMAudio.getInstance().init(this.getApplicationContext(), rtmaudiocache, TranscribeLang.EN_US.getName(),new IAudioAction());
-
-
-    RTMAudio audioManage = RTMAudio.getinstance();
-    .init(this.getApplicationContext(), rtmaudiocache, TranscribeLang.EN_US.getName(),new IAudioAction());
+    LDRecordAudio ldRecordAudio = LDRecordAudio.getinstance();
+    ldRecordAudio.init(this.getApplicationContext(), rtmaudiocache, TranscribeLang.EN_US.getName(),new IAudioAction());
 
     audioManage.startRecord(); //开始录音
     audioManage.stopRecord();  //结束录音
